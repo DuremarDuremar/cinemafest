@@ -14,7 +14,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #2f3542;
+  
   ::-webkit-scrollbar {
     width: 10px;
     background-color: #f9f9fd;
@@ -59,4 +59,5 @@ export const Content = styled.div`
   min-height: 100vh;
   margin: 0px auto;
   font-family: "Yatra One", cursive;
+  background-color: #2f3542;
 `;
