@@ -1,8 +1,8 @@
 import { ResponsActionTypes } from "../../types/respons";
 
-export const respons1000 = (res: boolean) => {
+export const respons950 = (res: boolean) => {
   return {
-    type: ResponsActionTypes.RESPONS_1000,
+    type: ResponsActionTypes.RESPONS_950,
     payload: res,
   };
 };
