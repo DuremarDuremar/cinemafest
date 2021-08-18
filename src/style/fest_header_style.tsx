@@ -36,6 +36,7 @@ export const Menu = styled.section<{
           `
            text-align: right;
         `}
+      }
     }
   }
 `;
