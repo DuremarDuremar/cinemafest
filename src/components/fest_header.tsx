@@ -5,12 +5,12 @@ import { Content, Logo, Menu } from "../style/fest_header_style";
 import logo from "../assets/logo.png";
 
 const FestHeader: FC = () => {
-  const { respons950 } = useTypeSelector((state) => state.respons);
+  const { respons950, respons615 } = useTypeSelector((state) => state.respons);
   const btns = ["Cannes", "Venice", "Berlin", "Sundance"];
 
   return (
     <Content>
-      <Menu respons950={respons950}>
+      <Menu respons950={respons950} respons615={respons615}>
         <ul>
           {btns.map((item, index) => {
             return <li key={index}>{item}</li>;

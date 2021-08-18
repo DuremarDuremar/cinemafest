@@ -5,10 +5,12 @@ import logo from "../assets/cinemaLogo.jpg";
 export const Content = styled.div`
   display: flex;
   height: 200px;
-  /* border-bottom: 2px solid #dfe4ea; */
 `;
 
-export const Menu = styled.section<{ respons950: boolean }>`
+export const Menu = styled.section<{
+  respons950: boolean;
+  respons615: boolean;
+}>`
   flex: 0 0 70%;
   background: url(${macabre});
   background-repeat: no-repeat;
@@ -20,23 +22,31 @@ export const Menu = styled.section<{ respons950: boolean }>`
   ul {
     padding-top: 40px;
     width: 100%;
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: ${(props) =>
+      props.respons615 ? "repeat(4, 1fr)" : "repeat(2, 1fr)"};
+    grid-gap: 20px;
     li {
       cursor: pointer;
       color: #dfe4ea;
+      text-align: center;
+      &:nth-child(-n + 2) {
+        ${(props) =>
+          !props.respons615 &&
+          `
+           text-align: right;
+        `}
     }
   }
 `;
 export const Logo = styled.section<{ respons950: boolean }>`
-  min-width: 170px;
   flex: 0 0 30%;
   div {
     width: 100%;
+
     img {
       width: 55px;
       height: 55px;
-      z-index: 2;
       background-color: #dfe4ea;
       border-radius: 50%;
       margin: 5px 0 0 5px;
@@ -46,18 +56,33 @@ export const Logo = styled.section<{ respons950: boolean }>`
       font-family: "New Tegomin", serif;
       font-size: calc(15px + 1vw);
       font-style: italic;
-      display: inline-block;
-      padding-left: 10px;
+      display: ${(props) => (props.respons950 ? "inline-block" : "block")};
+      padding: ${(props) => (props.respons950 ? "0 0 0 10px" : "10px 0 0 0")};
     }
     &:first-child {
+      ${(props) =>
+        props.respons950 &&
+        `
       background: url(${logo});
       background-repeat: no-repeat;
       height: 92%;
       background-size: cover;
+    `}
+      ${(props) =>
+        !props.respons950 &&
+        `
+      display:flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      
+    `}
     }
     &:last-child {
       background-color: black;
       height: 8%;
+      display: ${(props) => (props.respons950 ? "block" : "none")};
     }
   }
 `;

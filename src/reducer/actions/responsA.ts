@@ -6,9 +6,9 @@ export const respons950 = (res: boolean) => {
     payload: res,
   };
 };
-export const respons715 = (res: boolean) => {
+export const respons615 = (res: boolean) => {
   return {
-    type: ResponsActionTypes.RESPONS_715,
+    type: ResponsActionTypes.RESPONS_615,
     payload: res,
   };
 };
