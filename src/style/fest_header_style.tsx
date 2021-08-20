@@ -5,6 +5,7 @@ import logo from "../assets/cinemaLogo.jpg";
 export const Content = styled.div`
   display: flex;
   height: 200px;
+  padding: 5px 5px 0 5px;
 `;
 
 export const Menu = styled.section<{
@@ -27,9 +28,6 @@ export const Menu = styled.section<{
       props.respons615 ? "repeat(4, 1fr)" : "repeat(2, 1fr)"};
     grid-gap: 20px;
     li {
-      cursor: pointer;
-      color: #dfe4ea;
-      text-align: center;
       &:nth-child(-n + 2) {
         ${(props) =>
           !props.respons615 &&
@@ -40,6 +38,17 @@ export const Menu = styled.section<{
     }
   }
 `;
+
+export const Name = styled.li<{ active: boolean }>`
+  cursor: pointer;
+  text-align: center;
+  color: ${(props) => (props.active ? "#b8860b" : "#dfe4ea")};
+  transition: all 0.4s ease-in-out;
+  &:hover {
+    box-shadow: 0px 6px 2px -2px rgba(112, 107, 38, 0.56);
+  }
+`;
+
 export const Logo = styled.section<{ respons950: boolean }>`
   flex: 0 0 30%;
   div {
@@ -59,6 +68,7 @@ export const Logo = styled.section<{ respons950: boolean }>`
       font-style: italic;
       display: ${(props) => (props.respons950 ? "inline-block" : "block")};
       padding: ${(props) => (props.respons950 ? "0 0 0 10px" : "10px 0 0 0")};
+      text-align: center;
     }
     &:first-child {
       ${(props) =>
@@ -68,6 +78,17 @@ export const Logo = styled.section<{ respons950: boolean }>`
       background-repeat: no-repeat;
       height: 92%;
       background-size: cover;
+      position:relative;
+      :before {
+      content: "";
+      display:block;
+      width: 4px;
+      height: 100%;
+      background-color:black;
+      position:absolute;
+      transform: rotate(17deg);
+      left:-2.1vw;
+}
     `}
       ${(props) =>
         !props.respons950 &&
