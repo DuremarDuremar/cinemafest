@@ -2,7 +2,7 @@ import React, { FC, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 // import { useTypeSelector } from "../hooks/useTypeSelector";
-import { fetchTop } from "../reducer/actions/menuA";
+import { fetchMenu } from "../reducer/actions/menuA";
 import { Content, Item } from "../style/fest_main_style";
 
 interface IProps {
@@ -15,8 +15,8 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
     choiceFest === "Sundance" ? 5 : choiceFest === "Berlin" ? 8 : 9;
 
   useEffect(() => {
-    dispatch(fetchTop());
-  }, [dispatch]);
+    dispatch(fetchMenu(choiceFest));
+  }, [dispatch, choiceFest]);
 
   return (
     <Content>

@@ -2,11 +2,28 @@ import { Dispatch } from "redux";
 import axios from "axios";
 
 import { DefaultActionTypes, DefaultAction } from "../../types/data";
+import { arrayLink } from "../arrayLink";
 
 const arrayTop: string[] = ["354", "195434", "425", "361"];
-
-export const fetchTop = () => {
+const date = [
+  "1940s",
+  "1950s",
+  "1960s",
+  "1970s",
+  "1980s",
+  "1990s",
+  "2000s",
+  "2010s",
+];
+export const fetchMenu = (choiceFest: string) => {
   return async (dispatch: Dispatch<DefaultAction>) => {
+    const bar = date
+      .map((item) => `${choiceFest}` + item)
+      .filter((item) => arrayLink[item])
+      .map((item) => arrayLink[item]);
+
+    console.log(bar);
+
     try {
       dispatch({ type: DefaultActionTypes.FETCH_DEFAULT });
       const resArray = arrayTop.map((item) => {
