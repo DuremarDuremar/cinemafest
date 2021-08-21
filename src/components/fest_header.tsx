@@ -13,8 +13,6 @@ const FestHeader: FC<IProps> = ({ choiceFest, setChoiceFest }) => {
   const { respons950, respons615 } = useTypeSelector((state) => state.respons);
   const btns = ["Cannes", "Venice", "Berlin", "Sundance"];
 
-  console.log(choiceFest);
-
   return (
     <Content>
       <Menu respons950={respons950} respons615={respons615}>
