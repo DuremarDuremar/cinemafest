@@ -1,4 +1,8 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
+import { useDispatch } from "react-redux";
+
+// import { useTypeSelector } from "../hooks/useTypeSelector";
+import { fetchTop } from "../reducer/actions/menuA";
 import { Content, Item } from "../style/fest_main_style";
 
 interface IProps {
@@ -6,8 +10,13 @@ interface IProps {
 }
 
 const FestMain: FC<IProps> = ({ choiceFest }) => {
+  const dispatch = useDispatch();
   const numberGrid =
     choiceFest === "Sundance" ? 5 : choiceFest === "Berlin" ? 8 : 9;
+
+  useEffect(() => {
+    dispatch(fetchTop());
+  }, [dispatch]);
 
   return (
     <Content>

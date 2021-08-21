@@ -10,7 +10,7 @@ const initianalState: DefaultState = {
   error: "",
 };
 
-export const responsReducer = (
+export const menuReducer = (
   state = initianalState,
   action: DefaultAction
 ): DefaultState => {
