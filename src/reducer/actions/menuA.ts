@@ -1,20 +1,10 @@
 import { Dispatch } from "redux";
 import axios from "axios";
+import shuffle from "lodash.shuffle";
 
 import { DefaultActionTypes, DefaultAction } from "../../types/data";
-import { arrayLink } from "../arrayLink";
+import { arrayLink, date } from "../arrayLink";
 
-const arrayTop: string[] = ["354", "195434", "425", "361"];
-const date = [
-  "1940s",
-  "1950s",
-  "1960s",
-  "1970s",
-  "1980s",
-  "1990s",
-  "2000s",
-  "2010s",
-];
 export const fetchMenu = (choiceFest: string) => {
   return async (dispatch: Dispatch<DefaultAction>) => {
     const bar = date
@@ -22,11 +12,13 @@ export const fetchMenu = (choiceFest: string) => {
       .filter((item) => arrayLink[item])
       .map((item) => arrayLink[item]);
 
-    console.log(bar);
+    const foo = bar.map((item) => {
+      return shuffle(item)[0][0];
+    });
 
     try {
       dispatch({ type: DefaultActionTypes.FETCH_DEFAULT });
-      const resArray = arrayTop.map((item) => {
+      const resArray = foo.map((item) => {
         const res = axios.get(
           `https://kinopoiskapiunofficial.tech/api/v2.1/films/${item}`,
           {
