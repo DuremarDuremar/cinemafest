@@ -10,7 +10,7 @@ export const Content = styled.div`
 export const Item = styled.div`
   min-width: 150px;
   min-height: 100px;
-  background-color: black;
+  background-color: yellow;
 
   img {
     display: block;

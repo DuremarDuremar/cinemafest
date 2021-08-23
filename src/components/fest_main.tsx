@@ -14,27 +14,29 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
   const dispatch = useDispatch();
   const { respons615 } = useTypeSelector((state) => state.respons);
   const { data } = useTypeSelector((state) => state.menu);
-  const numberGrid =
-    choiceFest === "Sundance" ? 5 : choiceFest === "Berlin" ? 8 : 9;
 
   useEffect(() => {
     dispatch(fetchMenu(choiceFest));
   }, [dispatch, choiceFest]);
 
-  console.log(date.reverse());
+  const yearFest =
+    choiceFest === "Sundance"
+      ? date.slice(4)
+      : choiceFest === "Berlin"
+      ? date.slice(1)
+      : date;
 
   return (
     <Content>
-      {/* {Array.from([...new Array(numberGrid)].keys()).map((item) => {
-        return <Item key={item}>{item + 1}</Item>;
-      })} */}
-      {data &&
-        data
-          .map((item, index) => {
+      {data.length &&
+        date &&
+        Array.from([...new Array(data.length)].keys())
+          .map((item) => {
             return (
-              <Item key={item.filmId}>
-                <img src={item.posterUrl} alt={item.filmId} />
-                {/* <p>{date && date.reverse()[index]}</p> */}
+              <Item key={item}>
+                <img src={data[item].posterUrl} alt={data[item].nameEn} />
+                {yearFest[item]}
+                {item}
               </Item>
             );
           })
