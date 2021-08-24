@@ -55,3 +55,12 @@ export const Item = styled.div<{
     }
   }
 `;
+
+export const LoadingFest = styled.div<{
+  background: any;
+}>`
+  background-color: red;
+  min-width: 300px;
+  min-height: 100vh;
+  background: url(${(props) => props.background}) no-repeat center center;
+`;

@@ -18,6 +18,7 @@ export const menuReducer = (
     case DefaultActionTypes.FETCH_DEFAULT:
       return {
         ...state,
+        data: [],
         loading: true,
       };
     case DefaultActionTypes.FETCH_DEFAULT_SUCCESS:

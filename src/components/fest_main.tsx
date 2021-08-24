@@ -3,8 +3,10 @@ import { useDispatch } from "react-redux";
 
 import { useTypeSelector } from "../hooks/useTypeSelector";
 import { fetchMenu } from "../reducer/actions/menuA";
-import { Content, Item } from "../style/fest_main_style";
+import { Content, Item, LoadingFest } from "../style/fest_main_style";
 import { date } from "../reducer/arrayLink";
+import Cannes from "../assets/Cannes.png";
+import Berlin from "../assets/Berlin.png";
 
 interface IProps {
   choiceFest: string;
@@ -27,40 +29,56 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
       ? date.slice(1)
       : date;
 
-  console.log(choiceYear.length ? true : false);
+  console.log(`${choiceFest}`);
 
-  return (
-    <Content>
-      {data.length &&
-        date &&
-        Array.from([...new Array(data.length)].keys())
-          .map((item) => {
-            return (
-              <Item
-                key={item}
-                background={data[item].posterUrl}
-                choice={yearFest[item] === choiceYear ? true : false}
-                choiceActive={choiceYear.length ? true : false}
-                onClick={() =>
-                  yearFest[item] === choiceYear
-                    ? setChoiceYear("")
-                    : setChoiceYear(yearFest[item])
-                }
-              >
-                <p>
-                  {yearFest[item] &&
-                    yearFest[item]
-                      .split("")
-                      .map((item, index) => (
-                        <strong key={index}>{item}</strong>
-                      ))}
-                </p>
-                <div></div>
-              </Item>
-            );
-          })
-          .reverse()}
-    </Content>
+  const render = () => {
+    return (
+      <Content>
+        {data.length &&
+          date &&
+          Array.from([...new Array(data.length)].keys())
+            .map((item) => {
+              return (
+                <Item
+                  key={item}
+                  background={data[item].posterUrl}
+                  choice={yearFest[item] === choiceYear ? true : false}
+                  choiceActive={choiceYear.length ? true : false}
+                  onClick={() =>
+                    yearFest[item] === choiceYear
+                      ? setChoiceYear("")
+                      : setChoiceYear(yearFest[item])
+                  }
+                >
+                  <p>
+                    {yearFest[item] &&
+                      yearFest[item]
+                        .split("")
+                        .map((item, index) => (
+                          <strong key={index}>{item}</strong>
+                        ))}
+                  </p>
+                  <div></div>
+                </Item>
+              );
+            })
+            .reverse()}
+      </Content>
+    );
+  };
+
+  return data.length ? (
+    render()
+  ) : (
+    <LoadingFest
+      background={
+        choiceFest === "Cannes"
+          ? Cannes
+          : choiceFest === "Berlin"
+          ? Berlin
+          : null
+      }
+    />
   );
 };
 
