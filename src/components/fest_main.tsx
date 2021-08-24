@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import { useTypeSelector } from "../hooks/useTypeSelector";
@@ -14,6 +14,7 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
   const dispatch = useDispatch();
   const { respons615 } = useTypeSelector((state) => state.respons);
   const { data } = useTypeSelector((state) => state.menu);
+  const [choiceYear, setChoiceYear] = useState("");
 
   useEffect(() => {
     dispatch(fetchMenu(choiceFest));
@@ -26,6 +27,8 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
       ? date.slice(1)
       : date;
 
+  console.log(choiceYear.length ? true : false);
+
   return (
     <Content>
       {data.length &&
@@ -33,7 +36,17 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
         Array.from([...new Array(data.length)].keys())
           .map((item) => {
             return (
-              <Item key={item} background={data[item].posterUrl}>
+              <Item
+                key={item}
+                background={data[item].posterUrl}
+                choice={yearFest[item] === choiceYear ? true : false}
+                choiceActive={choiceYear.length ? true : false}
+                onClick={() =>
+                  yearFest[item] === choiceYear
+                    ? setChoiceYear("")
+                    : setChoiceYear(yearFest[item])
+                }
+              >
                 <p>
                   {yearFest[item] &&
                     yearFest[item]
