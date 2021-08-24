@@ -33,10 +33,16 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
         Array.from([...new Array(data.length)].keys())
           .map((item) => {
             return (
-              <Item key={item}>
-                <img src={data[item].posterUrl} alt={data[item].nameEn} />
-                {yearFest[item]}
-                {item}
+              <Item key={item} background={data[item].posterUrl}>
+                <p>
+                  {yearFest[item] &&
+                    yearFest[item]
+                      .split("")
+                      .map((item, index) => (
+                        <strong key={index}>{item}</strong>
+                      ))}
+                </p>
+                <div></div>
               </Item>
             );
           })
