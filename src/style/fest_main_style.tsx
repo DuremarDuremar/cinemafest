@@ -59,8 +59,13 @@ export const Item = styled.div<{
 export const LoadingFest = styled.div<{
   background: any;
 }>`
-  background-color: red;
-  min-width: 300px;
-  min-height: 100vh;
-  background: url(${(props) => props.background}) no-repeat center center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  div {
+    width: 300px;
+    height: 300px;
+    background: url(${(props) => props.background}) no-repeat center center;
+    background-size: contain;
+  }
 `;

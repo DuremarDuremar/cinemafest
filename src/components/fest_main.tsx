@@ -7,6 +7,8 @@ import { Content, Item, LoadingFest } from "../style/fest_main_style";
 import { date } from "../reducer/arrayLink";
 import Cannes from "../assets/Cannes.png";
 import Berlin from "../assets/Berlin.png";
+import Venice from "../assets/Venice.png";
+import Sundance from "../assets/Sundance.png";
 
 interface IProps {
   choiceFest: string;
@@ -76,9 +78,13 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
           ? Cannes
           : choiceFest === "Berlin"
           ? Berlin
-          : null
+          : choiceFest === "Venice"
+          ? Venice
+          : Sundance
       }
-    />
+    >
+      <div></div>
+    </LoadingFest>
   );
 };
 
