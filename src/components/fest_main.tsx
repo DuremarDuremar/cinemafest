@@ -5,6 +5,7 @@ import { useTypeSelector } from "../hooks/useTypeSelector";
 import { fetchMenu } from "../reducer/actions/menuA";
 import { Content, Item, LoadingFest } from "../style/fest_main_style";
 import { date } from "../reducer/arrayLink";
+import Spinner from "./spinner";
 import Cannes from "../assets/Cannes.png";
 import Berlin from "../assets/Berlin.png";
 import Venice from "../assets/Venice.png";
@@ -21,7 +22,9 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
   const [choiceYear, setChoiceYear] = useState("");
 
   useEffect(() => {
-    dispatch(fetchMenu(choiceFest));
+    setTimeout(() => {
+      dispatch(fetchMenu(choiceFest));
+    }, 400);
   }, [dispatch, choiceFest]);
 
   const yearFest =
@@ -83,7 +86,9 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
           : Sundance
       }
     >
-      <div></div>
+      <div className="img-fest">
+        <Spinner />
+      </div>
     </LoadingFest>
   );
 };

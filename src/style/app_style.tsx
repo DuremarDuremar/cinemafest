@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle, keyframes } from "styled-components";
 
 export const Global = createGlobalStyle`
 * {
@@ -60,4 +60,15 @@ export const Content = styled.div`
   margin: 0px auto;
   font-family: "Yatra One", cursive;
   background-color: #2f3542;
+`;
+
+export const rotate = (n: any) => keyframes`
+ 0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
+  }
+  100% {
+    -webkit-transform: rotate(${n});
+    transform: rotate(${n});
+  }
 `;
