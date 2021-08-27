@@ -5,6 +5,7 @@ import { useTypeSelector } from "../hooks/useTypeSelector";
 import { fetchMenu } from "../reducer/actions/menuA";
 import { Content, Item, LoadingFest } from "../style/fest_main_style";
 import { date } from "../reducer/arrayLink";
+import FestFilms from "./fest_films";
 import Spinner from "./spinner";
 import Cannes from "../assets/Cannes.png";
 import Berlin from "../assets/Berlin.png";
@@ -34,41 +35,42 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
       ? date.slice(1)
       : date;
 
-  console.log(`${choiceFest}`);
-
   const render = () => {
     return (
-      <Content>
-        {data.length &&
-          date &&
-          Array.from([...new Array(data.length)].keys())
-            .map((item) => {
-              return (
-                <Item
-                  key={item}
-                  background={data[item].posterUrl}
-                  choice={yearFest[item] === choiceYear ? true : false}
-                  choiceActive={choiceYear.length ? true : false}
-                  onClick={() =>
-                    yearFest[item] === choiceYear
-                      ? setChoiceYear("")
-                      : setChoiceYear(yearFest[item])
-                  }
-                >
-                  <p>
-                    {yearFest[item] &&
-                      yearFest[item]
-                        .split("")
-                        .map((item, index) => (
-                          <strong key={index}>{item}</strong>
-                        ))}
-                  </p>
-                  <div></div>
-                </Item>
-              );
-            })
-            .reverse()}
-      </Content>
+      <>
+        <Content>
+          {data.length &&
+            date &&
+            Array.from([...new Array(data.length)].keys())
+              .map((item) => {
+                return (
+                  <Item
+                    key={item}
+                    background={data[item].posterUrl}
+                    choice={yearFest[item] === choiceYear ? true : false}
+                    choiceActive={choiceYear.length ? true : false}
+                    onClick={() =>
+                      yearFest[item] === choiceYear
+                        ? setChoiceYear("")
+                        : setChoiceYear(yearFest[item])
+                    }
+                  >
+                    <p>
+                      {yearFest[item] &&
+                        yearFest[item]
+                          .split("")
+                          .map((item, index) => (
+                            <strong key={index}>{item}</strong>
+                          ))}
+                    </p>
+                    <div></div>
+                  </Item>
+                );
+              })
+              .reverse()}
+        </Content>
+        {choiceYear.length ? <FestFilms choiceYear={choiceYear} /> : null}
+      </>
     );
   };
 

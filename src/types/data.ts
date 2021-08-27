@@ -8,18 +8,27 @@ export enum DefaultActionTypes {
   FETCH_DEFAULT = "FETCH_DEFAULT",
   FETCH_DEFAULT_SUCCESS = "FETCH_DEFAULT_SUCCESS",
   FETCH_DEFAULT_ERROR = "FETCH_DEFAULT_ERROR",
+  FETCH_DEFAULT_FILMS = "FETCH_DEFAULT_FILMS",
+  FETCH_DEFAULT_SUCCESS_FILMS = "FETCH_DEFAULT_SUCCESS_FILMS",
+  FETCH_DEFAULT_ERROR_FILMS = "FETCH_DEFAULT_ERROR_FILMS",
 }
 
 interface FetchDefaultAction {
-  type: DefaultActionTypes.FETCH_DEFAULT;
+  type:
+    | DefaultActionTypes.FETCH_DEFAULT
+    | DefaultActionTypes.FETCH_DEFAULT_FILMS;
 }
 
 interface FetchDefaultSuccessAction {
-  type: DefaultActionTypes.FETCH_DEFAULT_SUCCESS;
+  type:
+    | DefaultActionTypes.FETCH_DEFAULT_SUCCESS
+    | DefaultActionTypes.FETCH_DEFAULT_SUCCESS_FILMS;
   payload: any[];
 }
 interface FetchDefaultErrorAction {
-  type: DefaultActionTypes.FETCH_DEFAULT_ERROR;
+  type:
+    | DefaultActionTypes.FETCH_DEFAULT_ERROR
+    | DefaultActionTypes.FETCH_DEFAULT_ERROR_FILMS;
   payload: string;
 }
 
