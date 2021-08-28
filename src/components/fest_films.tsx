@@ -4,19 +4,19 @@ import { useDispatch } from "react-redux";
 import { fetchFilms } from "../reducer/actions/filmsA";
 
 interface IProps {
-  choiceYear: string;
+  linkFest: string;
 }
 
-const FestFilms: FC<IProps> = ({ choiceYear }) => {
+const FestFilms: FC<IProps> = ({ linkFest }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     setTimeout(() => {
-      fetchFilms(choiceYear);
+      fetchFilms(linkFest);
     }, 400);
-  }, [choiceYear]);
+  }, [linkFest]);
 
-  return <div>{choiceYear}</div>;
+  return <div>{linkFest}</div>;
 };
 
 export default FestFilms;

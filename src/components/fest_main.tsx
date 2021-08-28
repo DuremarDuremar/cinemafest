@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState, useEffect, useMemo } from "react";
 import { useDispatch } from "react-redux";
 
 import { useTypeSelector } from "../hooks/useTypeSelector";
@@ -18,7 +18,7 @@ interface IProps {
 
 const FestMain: FC<IProps> = ({ choiceFest }) => {
   const dispatch = useDispatch();
-  const { respons615 } = useTypeSelector((state) => state.respons);
+  // const { respons615 } = useTypeSelector((state) => state.respons);
   const { data } = useTypeSelector((state) => state.menu);
   const [choiceYear, setChoiceYear] = useState("");
 
@@ -28,12 +28,17 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
     }, 400);
   }, [dispatch, choiceFest]);
 
-  const yearFest =
-    choiceFest === "Sundance"
+  const yearFest = useMemo(() => {
+    if (choiceYear.length) {
+      setChoiceYear("");
+    }
+
+    return choiceFest === "Sundance"
       ? date.slice(4)
       : choiceFest === "Berlin"
       ? date.slice(1)
       : date;
+  }, [choiceFest]);
 
   const render = () => {
     return (
@@ -69,7 +74,9 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
               })
               .reverse()}
         </Content>
-        {choiceYear.length ? <FestFilms choiceYear={choiceYear} /> : null}
+        {choiceYear.length ? (
+          <FestFilms linkFest={`${choiceFest + choiceYear}`} />
+        ) : null}
       </>
     );
   };
