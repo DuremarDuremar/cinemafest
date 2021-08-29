@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 
 import { useTypeSelector } from "../hooks/useTypeSelector";
 import { fetchMenu } from "../reducer/actions/menuA";
+import { filmsDelete } from "../reducer/actions/filmsA";
 import { Content, Item, LoadingFest } from "../style/fest_main_style";
 import { date } from "../reducer/arrayLink";
 import FestFilms from "./fest_films";
@@ -20,18 +21,33 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
   const dispatch = useDispatch();
   // const { respons615 } = useTypeSelector((state) => state.respons);
   const { data } = useTypeSelector((state) => state.menu);
+  const { films } = useTypeSelector((state) => state);
   const [choiceYear, setChoiceYear] = useState("");
 
+  console.log(films.data);
+
+  // получаем рандомные обложки для списка десятилетий
+  // выбраного фестиваля
   useEffect(() => {
     setTimeout(() => {
       dispatch(fetchMenu(choiceFest));
     }, 400);
   }, [dispatch, choiceFest]);
 
-  const yearFest = useMemo(() => {
-    if (choiceYear.length) {
-      setChoiceYear("");
+  console.log("choiceYear", choiceYear);
+
+  // удаляем фильмы из глобального стэйта
+  // при отжатии выбора года
+  useEffect(() => {
+    if (films.data.length && !choiceYear.length) {
+      dispatch(filmsDelete());
     }
+  }, [choiceYear.length, films.data.length, dispatch]);
+
+  // определяем сетку для отрисовки и сбрасываем выбор года
+  // при переходе на новый фестиваль
+  const yearFest = useMemo(() => {
+    setChoiceYear((prev) => (prev.length ? "" : prev));
 
     return choiceFest === "Sundance"
       ? date.slice(4)

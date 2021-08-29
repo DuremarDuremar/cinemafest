@@ -11,6 +11,7 @@ export enum DefaultActionTypes {
   FETCH_DEFAULT_FILMS = "FETCH_DEFAULT_FILMS",
   FETCH_DEFAULT_SUCCESS_FILMS = "FETCH_DEFAULT_SUCCESS_FILMS",
   FETCH_DEFAULT_ERROR_FILMS = "FETCH_DEFAULT_ERROR_FILMS",
+  FETCH_DEFAULT_DELETE_FILMS = "FETCH_DEFAULT_DELETE_FILMS",
 }
 
 interface FetchDefaultAction {
@@ -22,7 +23,8 @@ interface FetchDefaultAction {
 interface FetchDefaultSuccessAction {
   type:
     | DefaultActionTypes.FETCH_DEFAULT_SUCCESS
-    | DefaultActionTypes.FETCH_DEFAULT_SUCCESS_FILMS;
+    | DefaultActionTypes.FETCH_DEFAULT_SUCCESS_FILMS
+    | DefaultActionTypes.FETCH_DEFAULT_DELETE_FILMS;
   payload: any[];
 }
 interface FetchDefaultErrorAction {

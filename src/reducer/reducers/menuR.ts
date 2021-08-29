@@ -24,11 +24,13 @@ export const menuReducer = (
     case DefaultActionTypes.FETCH_DEFAULT_SUCCESS:
       return {
         ...state,
+        loading: false,
         data: action.payload,
       };
     case DefaultActionTypes.FETCH_DEFAULT_ERROR:
       return {
         ...state,
+        loading: false,
         error: action.payload,
       };
     default:

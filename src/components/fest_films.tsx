@@ -1,6 +1,5 @@
 import React, { FC, useEffect } from "react";
 import { useDispatch } from "react-redux";
-
 import { fetchFilms } from "../reducer/actions/filmsA";
 
 interface IProps {
@@ -12,9 +11,9 @@ const FestFilms: FC<IProps> = ({ linkFest }) => {
 
   useEffect(() => {
     setTimeout(() => {
-      fetchFilms(linkFest);
+      dispatch(fetchFilms(linkFest));
     }, 400);
-  }, [linkFest]);
+  }, [linkFest, dispatch]);
 
   return <div>{linkFest}</div>;
 };
