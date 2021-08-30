@@ -1,14 +1,17 @@
 import { Dispatch } from "redux";
 import axios from "axios";
+import chunk from "lodash.chunk";
 
 import { DefaultActionTypes, DefaultAction } from "../../types/data";
 import { arrayLink } from "../arrayLink";
 
-export const fetchFilms = (linkFest: string) => {
+export const fetchFilms = (linkFest: string, number: number) => {
+  const foo = chunk(arrayLink[linkFest], 6);
+
   return async (dispatch: Dispatch<DefaultAction>) => {
     try {
       dispatch({ type: DefaultActionTypes.FETCH_DEFAULT_FILMS });
-      const listRes = await arrayLink[linkFest].slice(0, 2).map((item: any) => {
+      const listRes = await foo[number].map((item: any) => {
         const res = axios.get(
           `https://kinopoiskapiunofficial.tech/api/v2.1/films/${item[0]}`,
           {
