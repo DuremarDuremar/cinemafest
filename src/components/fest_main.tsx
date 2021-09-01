@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, useMemo } from "react";
+import React, { FC, useState, useEffect, useMemo, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { Transition } from "react-transition-group";
 
@@ -32,7 +32,7 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
   const [choiceYear, setChoiceYear] = useState("");
 
   console.log(films.data);
-
+  const nodeRef = useRef(null);
   // получаем рандомные обложки для списка десятилетий
   // выбраного фестиваля
   useEffect(() => {
@@ -66,6 +66,18 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
   const render = () => {
     return (
       <Wrapper>
+        <Transition
+          nodeRef={nodeRef}
+          in={choiceYear.length ? true : false}
+          timeout={900}
+        >
+          {(state) => (
+            <Animation state={state}>
+              <button onClick={() => setChoiceYear("")}>456</button>
+              <FestFilms linkFest={`${choiceFest + choiceYear}`} />
+            </Animation>
+          )}
+        </Transition>
         <Content>
           {data.length &&
             date &&
@@ -91,19 +103,12 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
                             <strong key={index}>{item}</strong>
                           ))}
                     </p>
-                    <div></div>
+                    <div>2</div>
                   </Item>
                 );
               })
               .reverse()}
         </Content>
-        <Transition in={choiceYear.length ? true : false} timeout={900}>
-          {(state) => (
-            <Animation state={state}>
-              <FestFilms linkFest={`${choiceFest + choiceYear}`} />
-            </Animation>
-          )}
-        </Transition>
       </Wrapper>
     );
   };

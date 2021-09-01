@@ -81,6 +81,16 @@ export const LoadingFest = styled.div<{
 export const Animation = styled.div<{
   state: any;
 }>`
-  transition: 5s;
+  transition: 3s;
+  transform: translateY(
+    ${({ state }) =>
+      state === "entering" || state === "entered" ? "0" : "-100%"}
+  );
   opacity: ${({ state }) => (state === "entered" ? 1 : 0)};
+  pointer-events: ${({ state }) => state !== "entered" && "none"};
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+  z-index: 1;
+  background-color: gray;
 `;
