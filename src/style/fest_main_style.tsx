@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const Wrapper = styled.div`
+  position: relative;
+`;
+
 export const Content = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -72,4 +76,11 @@ export const LoadingFest = styled.div<{
     align-items: center;
     justify-content: center;
   }
+`;
+
+export const Animation = styled.div<{
+  state: any;
+}>`
+  transition: 5s;
+  opacity: ${({ state }) => (state === "entered" ? 1 : 0)};
 `;

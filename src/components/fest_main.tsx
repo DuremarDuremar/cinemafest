@@ -1,10 +1,17 @@
 import React, { FC, useState, useEffect, useMemo } from "react";
 import { useDispatch } from "react-redux";
+import { Transition } from "react-transition-group";
 
 import { useTypeSelector } from "../hooks/useTypeSelector";
 import { fetchMenu } from "../reducer/actions/menuA";
 import { filmsDelete } from "../reducer/actions/filmsA";
-import { Content, Item, LoadingFest } from "../style/fest_main_style";
+import {
+  Wrapper,
+  Content,
+  Item,
+  Animation,
+  LoadingFest,
+} from "../style/fest_main_style";
 import { date } from "../reducer/arrayLink";
 import FestFilms from "./fest_films";
 import Spinner from "./spinner";
@@ -58,7 +65,7 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
 
   const render = () => {
     return (
-      <>
+      <Wrapper>
         <Content>
           {data.length &&
             date &&
@@ -90,10 +97,14 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
               })
               .reverse()}
         </Content>
-        {choiceYear.length ? (
-          <FestFilms linkFest={`${choiceFest + choiceYear}`} />
-        ) : null}
-      </>
+        <Transition in={choiceYear.length ? true : false} timeout={900}>
+          {(state) => (
+            <Animation state={state}>
+              <FestFilms linkFest={`${choiceFest + choiceYear}`} />
+            </Animation>
+          )}
+        </Transition>
+      </Wrapper>
     );
   };
 

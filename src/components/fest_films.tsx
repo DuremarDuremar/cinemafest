@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { useTypeSelector } from "../hooks/useTypeSelector";
 import { fetchFilms } from "../reducer/actions/filmsA";
 
+import { Content } from "../style/fest_films_style";
+
 interface IProps {
   linkFest: string;
 }
