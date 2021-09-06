@@ -89,11 +89,16 @@ export const Animation = styled.div<{
   opacity: ${({ state }) => (state === "entered" ? 1 : 0)};
   pointer-events: ${({ state }) => state !== "entered" && "none"};
   position: absolute;
-  width: 100vw;
-  height: 100%;
+  min-height: 100%;
   z-index: 1;
   background-color: gray;
+  margin-left: 0.4vw;
+  margin-right: 0.4vw;
+  left: 0;
+  right: 0;
   text-align: center;
+  background-color: black;
+
   i {
     transition: all 0.8s ease-in-out;
     color: #2f3542;
