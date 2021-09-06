@@ -106,7 +106,7 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
                             <strong key={index}>{item}</strong>
                           ))}
                     </p>
-                    <div>2</div>
+                    <div></div>
                   </Item>
                 );
               })
