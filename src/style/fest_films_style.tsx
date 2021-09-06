@@ -6,3 +6,5 @@ export const Content = styled.div`
   grid-gap: 10px;
   padding: 20px 5px 0;
 `;
+
+export const Item = styled.div``;

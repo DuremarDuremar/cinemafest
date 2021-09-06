@@ -93,4 +93,13 @@ export const Animation = styled.div<{
   height: 100%;
   z-index: 1;
   background-color: gray;
+  text-align: center;
+  i {
+    transition: all 0.8s ease-in-out;
+    color: #2f3542;
+    cursor: pointer;
+    &:hover {
+      color: #b8860b;
+    }
+  }
 `;

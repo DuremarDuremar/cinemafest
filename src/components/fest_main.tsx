@@ -73,7 +73,10 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
         >
           {(state) => (
             <Animation state={state}>
-              <button onClick={() => setChoiceYear("")}>456</button>
+              <i
+                className="fas fa-play fa-4x fa-rotate-270"
+                onClick={() => setChoiceYear("")}
+              ></i>
               <FestFilms linkFest={`${choiceFest + choiceYear}`} />
             </Animation>
           )}

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useTypeSelector } from "../hooks/useTypeSelector";
 import { fetchFilms } from "../reducer/actions/filmsA";
 
-import { Content } from "../style/fest_films_style";
+import { Content, Item } from "../style/fest_films_style";
 
 interface IProps {
   linkFest: string;
@@ -22,11 +22,20 @@ const FestFilms: FC<IProps> = ({ linkFest }) => {
 
   const render = () => {
     return (
-      <div>
+      <Content>
         {data.map((item, index) => (
-          <span key={index}>{item.filmId}</span>
+          <Item key={index}>
+            <div>
+              <span>{item.nameRu || item.nameEn}</span>
+              <span>{item.nameEn || null}</span>
+            </div>
+            <p>{item.year}</p>
+            <div>
+              <img src={item.posterUrlPreview} alt={item.filmId} />
+            </div>
+          </Item>
         ))}
-      </div>
+      </Content>
     );
   };
 
