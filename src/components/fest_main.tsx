@@ -31,7 +31,7 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
   const { films } = useTypeSelector((state) => state);
   const [choiceYear, setChoiceYear] = useState("");
 
-  console.log(films.data);
+  // console.log(films.data);
   const nodeRef = useRef(null);
   // получаем рандомные обложки для списка десятилетий
   // выбраного фестиваля
@@ -41,7 +41,7 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
     }, 400);
   }, [dispatch, choiceFest]);
 
-  console.log("choiceYear", choiceYear);
+  // console.log("choiceYear", choiceYear);
 
   // удаляем фильмы из глобального стэйта
   // при отжатии выбора года
@@ -77,7 +77,9 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
                 className="fas fa-play fa-4x fa-rotate-270"
                 onClick={() => setChoiceYear("")}
               ></i>
-              <FestFilms linkFest={`${choiceFest + choiceYear}`} />
+              {choiceYear.length && (
+                <FestFilms linkFest={`${choiceFest + choiceYear}`} />
+              )}
             </Animation>
           )}
         </Transition>

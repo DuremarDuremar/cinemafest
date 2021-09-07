@@ -18,14 +18,14 @@ export const filmsReducer = (
     case DefaultActionTypes.FETCH_DEFAULT_FILMS:
       return {
         ...state,
-        data: [],
+        data: state.data,
         loading: true,
       };
     case DefaultActionTypes.FETCH_DEFAULT_SUCCESS_FILMS:
       return {
         ...state,
         loading: false,
-        data: action.payload,
+        data: [...state.data, ...action.payload],
       };
     case DefaultActionTypes.FETCH_DEFAULT_ERROR_FILMS:
       return {

@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useInView } from "react-intersection-observer";
 
@@ -12,6 +12,8 @@ interface IProps {
 }
 
 const FestFilms: FC<IProps> = ({ linkFest }) => {
+  const [num, setNum] = useState(0);
+
   const dispatch = useDispatch();
 
   const { data } = useTypeSelector((state) => state.films);
@@ -25,9 +27,17 @@ const FestFilms: FC<IProps> = ({ linkFest }) => {
 
   useEffect(() => {
     setTimeout(() => {
-      dispatch(fetchFilms(linkFest, 0));
+      dispatch(fetchFilms(linkFest, num));
     }, 400);
-  }, [linkFest, dispatch]);
+  }, [linkFest, dispatch, num]);
+
+  useEffect(() => {
+    if (inView) {
+      setNum((prev) => prev + 1);
+    }
+  }, [inView]);
+
+  console.log(num);
 
   const render = () => {
     return (
