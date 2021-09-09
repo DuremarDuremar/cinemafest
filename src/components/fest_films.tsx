@@ -17,6 +17,7 @@ const FestFilms: FC<IProps> = ({ linkFest }) => {
   const dispatch = useDispatch();
 
   const { data } = useTypeSelector((state) => state.films);
+  const { respons950 } = useTypeSelector((state) => state.respons);
 
   const { ref, inView, entry } = useInView({
     threshold: 0,
@@ -41,12 +42,13 @@ const FestFilms: FC<IProps> = ({ linkFest }) => {
 
   const render = () => {
     return (
-      <Content>
+      <Content respons950={respons950}>
         {data.map((item, index) => (
           <Item
             key={index}
             ref={index + 1 === data.length ? ref : null}
             id={item.filmId}
+            respons950={respons950}
           >
             <Info>
               <div>

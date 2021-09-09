@@ -4,9 +4,12 @@ export const Wrapper = styled.div`
   position: relative;
 `;
 
-export const Content = styled.div`
+export const Content = styled.div<{
+  respons730: boolean;
+}>`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: ${(props) =>
+    props.respons730 ? "repeat(3, 1fr)" : "repeat(2, 1fr)"};
   grid-gap: 10px;
   padding: 20px 5px 0;
 `;
@@ -80,6 +83,7 @@ export const LoadingFest = styled.div<{
 
 export const Animation = styled.div<{
   state: any;
+  respons950: boolean;
 }>`
   transition: 3s;
   transform: translateY(
@@ -91,17 +95,26 @@ export const Animation = styled.div<{
   position: absolute;
   min-height: 100%;
   z-index: 1;
-  background-color: gray;
   margin-left: 0.4vw;
   margin-right: 0.4vw;
   left: 0;
   right: 0;
   text-align: center;
-  background-color: black;
+  background-color: ${({ respons950 }) => (respons950 ? "black" : "#2f3542")};
+
+  h3 {
+    color: red;
+    font-size: calc(2.5vw + 8px);
+    font-family: "Cantarell";
+    position: absolute;
+    left: 7%;
+    top: 8px;
+    transform: rotate(10deg);
+  }
 
   i {
     transition: all 0.8s ease-in-out;
-    color: #2f3542;
+    color: ${({ respons950 }) => (respons950 ? "#2f3542" : "black")};
     cursor: pointer;
     &:hover {
       color: #b8860b;

@@ -10,7 +10,7 @@ export const Content = styled.div`
 
 export const Menu = styled.section<{
   respons950: boolean;
-  respons615: boolean;
+  respons730: boolean;
 }>`
   flex: 0 0 70%;
   background: url(${macabre});
@@ -25,12 +25,12 @@ export const Menu = styled.section<{
     width: 100%;
     display: grid;
     grid-template-columns: ${(props) =>
-      props.respons615 ? "repeat(4, 1fr)" : "repeat(2, 1fr)"};
+      props.respons730 ? "repeat(4, 1fr)" : "repeat(2, 1fr)"};
     grid-gap: 20px;
     li {
       &:nth-child(-n + 2) {
         ${(props) =>
-          !props.respons615 &&
+          !props.respons730 &&
           `
            text-align: right;
         `}

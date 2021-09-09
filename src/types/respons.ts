@@ -1,11 +1,11 @@
 export interface ResponsState {
   respons950: boolean;
-  respons615: boolean;
+  respons730: boolean;
 }
 
 export enum ResponsActionTypes {
   RESPONS_950 = "RESPONS_950",
-  RESPONS_615 = "RESPONS_715",
+  RESPONS_730 = "RESPONS_730",
 }
 
 interface Respons950Action {
@@ -13,9 +13,9 @@ interface Respons950Action {
   payload: boolean;
 }
 
-interface Respons615Action {
-  type: ResponsActionTypes.RESPONS_615;
+interface Respons730Action {
+  type: ResponsActionTypes.RESPONS_730;
   payload: boolean;
 }
 
-export type ResponsAction = Respons950Action | Respons615Action;
+export type ResponsAction = Respons950Action | Respons730Action;

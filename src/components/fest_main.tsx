@@ -26,7 +26,7 @@ interface IProps {
 
 const FestMain: FC<IProps> = ({ choiceFest }) => {
   const dispatch = useDispatch();
-  // const { respons615 } = useTypeSelector((state) => state.respons);
+  const { respons730, respons950 } = useTypeSelector((state) => state.respons);
   const { data } = useTypeSelector((state) => state.menu);
   const { films } = useTypeSelector((state) => state);
   const [choiceYear, setChoiceYear] = useState("");
@@ -72,7 +72,8 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
           timeout={900}
         >
           {(state) => (
-            <Animation state={state}>
+            <Animation state={state} respons950={respons950}>
+              <h3>{choiceYear}</h3>
               <i
                 className="fas fa-play fa-4x fa-rotate-270"
                 onClick={() => setChoiceYear("")}
@@ -83,7 +84,7 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
             </Animation>
           )}
         </Transition>
-        <Content>
+        <Content respons730={respons730}>
           {data.length &&
             date &&
             Array.from([...new Array(data.length)].keys())

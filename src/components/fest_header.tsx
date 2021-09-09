@@ -10,12 +10,12 @@ interface IProps {
 }
 
 const FestHeader: FC<IProps> = ({ choiceFest, setChoiceFest }) => {
-  const { respons950, respons615 } = useTypeSelector((state) => state.respons);
+  const { respons950, respons730 } = useTypeSelector((state) => state.respons);
   const btns = ["Cannes", "Venice", "Berlin", "Sundance"];
 
   return (
     <Content>
-      <Menu respons950={respons950} respons615={respons615}>
+      <Menu respons950={respons950} respons730={respons730}>
         <ul>
           {btns.map((item, index) => {
             return (

@@ -6,7 +6,7 @@ import {
 
 const initianalState: ResponsState = {
   respons950: false,
-  respons615: false,
+  respons730: false,
 };
 
 export const responsReducer = (
@@ -19,10 +19,10 @@ export const responsReducer = (
         ...state,
         respons950: action.payload,
       };
-    case ResponsActionTypes.RESPONS_615:
+    case ResponsActionTypes.RESPONS_730:
       return {
         ...state,
-        respons615: action.payload,
+        respons730: action.payload,
       };
     default:
       return state;

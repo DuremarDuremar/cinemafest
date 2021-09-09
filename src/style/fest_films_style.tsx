@@ -1,15 +1,20 @@
 import styled from "styled-components";
 
-export const Content = styled.div`
+export const Content = styled.div<{
+  respons950: boolean;
+}>`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: ${({ respons950 }) =>
+    respons950 ? "repeat(3, 1fr)" : "repeat(2, 1fr)"};
   grid-gap: 10px;
   padding: 20px 5px 0;
 `;
 
-export const Item = styled.div`
+export const Item = styled.div<{
+  respons950: boolean;
+}>`
   margin: 0px auto;
-  background-color: #2f3542;
+  background-color: ${({ respons950 }) => (respons950 ? "#2f3542" : "black")};
   width: 300px;
 `;
 
