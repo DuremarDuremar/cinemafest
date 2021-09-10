@@ -23,6 +23,7 @@ const FestHeader: FC<IProps> = ({ choiceFest, setChoiceFest }) => {
                 key={index}
                 onClick={() => setChoiceFest(item)}
                 active={item === choiceFest ? true : false}
+                respons950={respons950}
               >
                 {item}
               </Name>

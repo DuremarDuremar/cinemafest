@@ -5,17 +5,19 @@ import { useMediaQuery } from "react-responsive";
 
 import Fest from "./pages/fest";
 import Directors from "./pages/directors";
-import { respons950, respons730 } from "./reducer/actions/responsA";
+import { respons950, respons730, respons520 } from "./reducer/actions/responsA";
 import { Global, Content } from "./style/app_style";
 
 const App: FC = () => {
   const dispatch = useDispatch();
   const res950 = useMediaQuery({ query: "(min-width: 950px)" });
   const res730 = useMediaQuery({ query: "(min-width: 730px)" });
+  const res520 = useMediaQuery({ query: "(min-width: 520px)" });
 
   useEffect(() => {
     dispatch(respons950(res950));
     dispatch(respons730(res730));
+    dispatch(respons520(res520));
   }, [res950, res730, dispatch]);
 
   return (

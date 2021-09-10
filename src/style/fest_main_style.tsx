@@ -57,7 +57,7 @@ export const Item = styled.div<{
 
     strong {
       color: red;
-      font-size: 4vw;
+      font-size: calc(4vw + 10px);
       font-weight: 400;
     }
   }

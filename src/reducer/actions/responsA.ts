@@ -12,3 +12,10 @@ export const respons730 = (res: boolean) => {
     payload: res,
   };
 };
+
+export const respons520 = (res: boolean) => {
+  return {
+    type: ResponsActionTypes.RESPONS_520,
+    payload: res,
+  };
+};

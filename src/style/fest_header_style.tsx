@@ -39,11 +39,12 @@ export const Menu = styled.section<{
   }
 `;
 
-export const Name = styled.li<{ active: boolean }>`
+export const Name = styled.li<{ active: boolean; respons950: boolean }>`
   cursor: pointer;
   text-align: center;
   color: ${(props) => (props.active ? "#b8860b" : "#dfe4ea")};
   transition: all 0.4s ease-in-out;
+  font-size: ${(props) => (props.respons950 ? "16px" : "20px")};
   &:hover {
     box-shadow: 0px 6px 2px -2px rgba(112, 107, 38, 0.56);
   }
