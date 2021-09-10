@@ -18,7 +18,7 @@ const App: FC = () => {
     dispatch(respons950(res950));
     dispatch(respons730(res730));
     dispatch(respons520(res520));
-  }, [res950, res730, dispatch]);
+  }, [res950, res520, res730, dispatch]);
 
   return (
     <BrowserRouter>

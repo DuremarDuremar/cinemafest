@@ -26,7 +26,9 @@ interface IProps {
 
 const FestMain: FC<IProps> = ({ choiceFest }) => {
   const dispatch = useDispatch();
-  const { respons730, respons950 } = useTypeSelector((state) => state.respons);
+  const { respons520, respons730, respons950 } = useTypeSelector(
+    (state) => state.respons
+  );
   const { data } = useTypeSelector((state) => state.menu);
   const { films } = useTypeSelector((state) => state);
   const [choiceYear, setChoiceYear] = useState("");
@@ -36,12 +38,12 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
   // получаем рандомные обложки для списка десятилетий
   // выбраного фестиваля
   useEffect(() => {
-    setTimeout(() => {
-      dispatch(fetchMenu(choiceFest));
-    }, 400);
-  }, [dispatch, choiceFest]);
-
-  // console.log("choiceYear", choiceYear);
+    if (respons520) {
+      setTimeout(() => {
+        dispatch(fetchMenu(choiceFest));
+      }, 400);
+    }
+  }, [dispatch, choiceFest, respons520]);
 
   // удаляем фильмы из глобального стэйта
   // при отжатии выбора года
@@ -62,6 +64,8 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
       ? date.slice(1)
       : date;
   }, [choiceFest]);
+
+  console.log(yearFest);
 
   const render = () => {
     return (
@@ -86,7 +90,7 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
         </Transition>
         <Content respons730={respons730}>
           {data.length &&
-            date &&
+            respons520 &&
             Array.from([...new Array(data.length)].keys())
               .map((item) => {
                 return (
@@ -114,12 +118,13 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
                 );
               })
               .reverse()}
+          {!respons520 && yearFest.map((item) => <p key={item}>{item}</p>)}
         </Content>
       </Wrapper>
     );
   };
 
-  return data.length ? (
+  return data.length || !respons520 ? (
     render()
   ) : (
     <LoadingFest
