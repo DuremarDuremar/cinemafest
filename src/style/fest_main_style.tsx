@@ -121,3 +121,23 @@ export const Animation = styled.div<{
     }
   }
 `;
+
+export const ItemAdap = styled.div`
+  text-align: center;
+  background-color: black;
+  color: #dfe4ea;
+  border: 2px solid #dfe4ea;
+  height: 40px;
+  font-size: 15px;
+  line-height: 40px;
+  cursor: pointer;
+  margin-left: 5px;
+  margin-right: 5px;
+  transition: all 0.5s ease-out;
+  &:not(:first-child) {
+    margin-top: 10px;
+  }
+  &:hover {
+    transform: translateX(-10%);
+  }
+`;

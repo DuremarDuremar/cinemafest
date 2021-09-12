@@ -9,6 +9,7 @@ import {
   Wrapper,
   Content,
   Item,
+  ItemAdap,
   Animation,
   LoadingFest,
 } from "../style/fest_main_style";
@@ -66,6 +67,7 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
   }, [choiceFest]);
 
   console.log(yearFest);
+  console.log(choiceYear);
 
   const render = () => {
     return (
@@ -88,38 +90,49 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
             </Animation>
           )}
         </Transition>
-        <Content respons730={respons730}>
-          {data.length &&
-            respons520 &&
-            Array.from([...new Array(data.length)].keys())
-              .map((item) => {
-                return (
-                  <Item
-                    key={item}
-                    background={data[item].posterUrl}
-                    choice={yearFest[item] === choiceYear ? true : false}
-                    choiceActive={choiceYear.length ? true : false}
-                    onClick={() =>
-                      yearFest[item] === choiceYear
-                        ? setChoiceYear("")
-                        : setChoiceYear(yearFest[item])
-                    }
-                  >
-                    <p>
-                      {yearFest[item] &&
-                        yearFest[item]
-                          .split("")
-                          .map((item, index) => (
-                            <strong key={index}>{item}</strong>
-                          ))}
-                    </p>
-                    <div></div>
-                  </Item>
-                );
-              })
-              .reverse()}
-          {!respons520 && yearFest.map((item) => <p key={item}>{item}</p>)}
-        </Content>
+        {respons520 ? (
+          <Content respons730={respons730}>
+            {data.length &&
+              Array.from([...new Array(data.length)].keys())
+                .map((item) => {
+                  return (
+                    <Item
+                      key={item}
+                      background={data[item].posterUrl}
+                      choice={yearFest[item] === choiceYear ? true : false}
+                      choiceActive={choiceYear.length ? true : false}
+                      onClick={() =>
+                        yearFest[item] === choiceYear
+                          ? setChoiceYear("")
+                          : setChoiceYear(yearFest[item])
+                      }
+                    >
+                      <p>
+                        {yearFest[item] &&
+                          yearFest[item]
+                            .split("")
+                            .map((item, index) => (
+                              <strong key={index}>{item}</strong>
+                            ))}
+                      </p>
+                      <div></div>
+                    </Item>
+                  );
+                })
+                .reverse()}
+          </Content>
+        ) : (
+          yearFest.map((item) => (
+            <ItemAdap
+              key={item}
+              onClick={() =>
+                item === choiceYear ? setChoiceYear("") : setChoiceYear(item)
+              }
+            >
+              {item}
+            </ItemAdap>
+          ))
+        )}
       </Wrapper>
     );
   };
