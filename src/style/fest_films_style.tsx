@@ -15,21 +15,24 @@ export const Item = styled.div<{
 }>`
   margin: 0px auto;
   background-color: ${({ respons950 }) => (respons950 ? "#2f3542" : "black")};
-  width: 300px;
+  max-width: 300px;
+  width: 100%;
 `;
 
-export const Info = styled.div`
+export const Info = styled.div<{
+  fs: string;
+}>`
   color: #fff;
   max-width: 300px;
 
   span {
     &:first-child {
-      font-size: 1.4vw;
+      font-size: ${({ fs }) => `calc(1vw + ${fs})`};
     }
 
     &:last-child {
       font-style: italic;
-      font-size: 1vw;
+      font-size: ${({ fs }) => `calc(0.7vw + ${fs})`};
     }
   }
 `;
@@ -37,6 +40,7 @@ export const Info = styled.div`
 export const Image = styled.div`
   img {
     max-height: 400px;
-    max-width: 300px;
+    max-width: 280px;
+    width: 100%;
   }
 `;

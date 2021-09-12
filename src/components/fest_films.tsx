@@ -17,7 +17,7 @@ const FestFilms: FC<IProps> = ({ linkFest }) => {
   const dispatch = useDispatch();
 
   const { data } = useTypeSelector((state) => state.films);
-  const { respons950 } = useTypeSelector((state) => state.respons);
+  const { respons950, respons730 } = useTypeSelector((state) => state.respons);
 
   const { ref, inView, entry } = useInView({
     threshold: 0,
@@ -50,7 +50,7 @@ const FestFilms: FC<IProps> = ({ linkFest }) => {
             id={item.filmId}
             respons950={respons950}
           >
-            <Info>
+            <Info fs={respons730 ? "4px" : "8px"}>
               <div>
                 <span>{item.nameRu || item.nameEn}</span>&nbsp;
                 <span>__ {item.nameEn || null}</span>
