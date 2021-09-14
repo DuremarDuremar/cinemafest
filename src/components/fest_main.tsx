@@ -29,7 +29,6 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
   const { films } = useTypeSelector((state) => state);
   const [choiceYear, setChoiceYear] = useState("");
 
-  // console.log(films.data);
   const nodeRef = useRef(null);
   // получаем рандомные обложки для списка десятилетий
   // выбраного фестиваля
@@ -80,7 +79,10 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
                 onClick={() => setChoiceYear("")}
               ></i>
               {choiceYear.length && (
-                <FestFilms linkFest={`${choiceFest + choiceYear}`} />
+                <FestFilms
+                  linkFest={`${choiceFest + choiceYear}`}
+                  choiceFest={choiceFest}
+                />
               )}
             </Animation>
           )}

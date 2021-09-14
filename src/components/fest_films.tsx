@@ -4,14 +4,15 @@ import { useInView } from "react-intersection-observer";
 
 import { useTypeSelector } from "../hooks/useTypeSelector";
 import { fetchFilms } from "../reducer/actions/filmsA";
-
+import Loading from "./loading_fest";
 import { Content, Item, Info, Image } from "../style/fest_films_style";
 
 interface IProps {
   linkFest: string;
+  choiceFest: string;
 }
 
-const FestFilms: FC<IProps> = ({ linkFest }) => {
+const FestFilms: FC<IProps> = ({ linkFest, choiceFest }) => {
   const [num, setNum] = useState(0);
 
   const dispatch = useDispatch();
@@ -72,7 +73,7 @@ const FestFilms: FC<IProps> = ({ linkFest }) => {
     );
   };
 
-  return data.length ? render() : <div>{linkFest}</div>;
+  return data.length ? render() : <Loading choiceFest={choiceFest} />;
 };
 
 export default FestFilms;
