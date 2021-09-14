@@ -63,29 +63,11 @@ export const Item = styled.div<{
   }
 `;
 
-export const LoadingFest = styled.div<{
-  background: any;
-}>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 30px 5px 0;
-  .img-fest {
-    width: 230px;
-    height: 200px;
-    background: url(${(props) => props.background}) no-repeat center center;
-    background-size: contain;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-`;
-
 export const Animation = styled.div<{
   state: any;
   respons950: boolean;
 }>`
-  transition: 3s;
+  transition: 2s;
   transform: translateY(
     ${({ state }) =>
       state === "entering" || state === "entered" ? "0" : "-100%"}
@@ -93,7 +75,7 @@ export const Animation = styled.div<{
   opacity: ${({ state }) => (state === "entered" ? 1 : 0)};
   pointer-events: ${({ state }) => state !== "entered" && "none"};
   position: absolute;
-  min-height: 100%;
+  min-height: 100vh;
   z-index: 1;
   margin-left: 0.4vw;
   margin-right: 0.4vw;

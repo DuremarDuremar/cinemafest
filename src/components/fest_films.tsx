@@ -23,8 +23,8 @@ const FestFilms: FC<IProps> = ({ linkFest }) => {
     threshold: 0,
   });
 
-  console.log(inView);
-  console.log(entry?.target.id);
+  // console.log(inView);
+  // console.log(entry?.target.id);
 
   useEffect(() => {
     setTimeout(() => {
@@ -38,7 +38,7 @@ const FestFilms: FC<IProps> = ({ linkFest }) => {
     }
   }, [inView]);
 
-  console.log(num);
+  // console.log(num);
 
   const render = () => {
     return (
@@ -50,16 +50,22 @@ const FestFilms: FC<IProps> = ({ linkFest }) => {
             id={item.filmId}
             respons950={respons950}
           >
-            <Info fs={respons730 ? "4px" : "8px"}>
-              <div>
-                <span>{item.nameRu || item.nameEn}</span>&nbsp;
-                <span>__ {item.nameEn || null}</span>
-              </div>
-              <p>{item.year}</p>
-            </Info>
-            <Image>
-              <img src={item.posterUrlPreview} alt={item.filmId} />
-            </Image>
+            {item.filmId ? (
+              <>
+                <Info fs={respons730 ? "4px" : "8px"}>
+                  <div>
+                    <span>{item.nameRu || item.nameEn}</span>&nbsp;
+                    <span>__ {item.nameEn || null}</span>
+                  </div>
+                  <p>{item.year}</p>
+                </Info>
+                <Image>
+                  <img src={item.posterUrlPreview} alt={item.filmId} />
+                </Image>
+              </>
+            ) : (
+              <p>loading</p>
+            )}
           </Item>
         ))}
       </Content>

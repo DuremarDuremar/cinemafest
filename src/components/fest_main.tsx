@@ -11,15 +11,10 @@ import {
   Item,
   ItemAdap,
   Animation,
-  LoadingFest,
 } from "../style/fest_main_style";
+import Loading from "./loading_fest";
 import { date } from "../reducer/arrayLink";
 import FestFilms from "./fest_films";
-import Spinner from "./spinner";
-import Cannes from "../assets/Cannes.png";
-import Berlin from "../assets/Berlin.png";
-import Venice from "../assets/Venice.png";
-import Sundance from "../assets/Sundance.png";
 
 interface IProps {
   choiceFest: string;
@@ -66,8 +61,8 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
       : date;
   }, [choiceFest]);
 
-  console.log(yearFest);
-  console.log(choiceYear);
+  // console.log(yearFest);
+  // console.log(choiceYear);
 
   const render = () => {
     return (
@@ -140,21 +135,7 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
   return data.length || !respons520 ? (
     render()
   ) : (
-    <LoadingFest
-      background={
-        choiceFest === "Cannes"
-          ? Cannes
-          : choiceFest === "Berlin"
-          ? Berlin
-          : choiceFest === "Venice"
-          ? Venice
-          : Sundance
-      }
-    >
-      <div className="img-fest">
-        <Spinner />
-      </div>
-    </LoadingFest>
+    <Loading choiceFest={choiceFest} />
   );
 };
 
