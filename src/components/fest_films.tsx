@@ -60,7 +60,7 @@ const FestFilms: FC<IProps> = ({ linkFest, choiceFest }) => {
                   </div>
                   <p>{item.year}</p>
                 </Info>
-                <Image>
+                <Image to={`/${item.filmId}`}>
                   <img src={item.posterUrlPreview} alt={item.filmId} />
                 </Image>
               </>

@@ -7,6 +7,7 @@ import Fest from "./pages/fest";
 import Directors from "./pages/directors";
 import { respons950, respons730, respons520 } from "./reducer/actions/responsA";
 import { Global, Content } from "./style/app_style";
+import Film from "./components/film";
 
 const App: FC = () => {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ const App: FC = () => {
         <Switch>
           <Route path="/" component={Fest} exact />
           <Route path="/direct" component={Directors} />
+          <Route path="/:id" component={Film} />
         </Switch>
       </Content>
     </BrowserRouter>

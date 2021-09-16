@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Content = styled.div<{
   respons950: boolean;
@@ -37,7 +38,7 @@ export const Info = styled.div<{
   }
 `;
 
-export const Image = styled.div`
+export const Image = styled(Link)`
   img {
     max-height: 400px;
     max-width: 280px;

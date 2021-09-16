@@ -7,7 +7,7 @@ import { arrayLink } from "../arrayLink";
 
 export const fetchFilms = (linkFest: string, number: number) => {
   const foo = chunk(arrayLink[linkFest], 6);
-  console.log(foo);
+  // console.log(foo);
 
   return async (dispatch: Dispatch<DefaultAction>) => {
     try {
