@@ -8,21 +8,26 @@ interface ParamTypes {
   id: string;
 }
 
+interface FilmTypes {
+  [index: number]: { filmId: number; nameEn: string };
+}
+
 const Film: FC = () => {
   let { id } = useParams<ParamTypes>();
   const { data } = useTypeSelector((state) => state.films);
-  const [film, setFilm] = useState<object[]>([{}]);
+  const [film, setFilm] = useState<FilmTypes>([]);
 
   useEffect(() => {
-    setFilm(data.filter((item) => item.filmId.toString() === id));
+    if (data.length) {
+      setFilm(data.filter((item) => item.filmId.toString() === id));
+    }
   }, [data, id]);
 
-  console.log("films", film[0]);
+  console.log("films", film[0].nameEn);
 
   return (
     <Content>
-      {" "}
-      {film[0] ? (
+      {film ? (
         <div>
           <p>{id}</p>
           <p></p>
