@@ -3,7 +3,6 @@ import { useParams } from "react-router";
 import axios from "axios";
 
 import { arrayLink } from "../reducer/arrayLink";
-import { useTypeSelector } from "../hooks/useTypeSelector";
 
 import {
   Content,
@@ -15,6 +14,7 @@ import {
   InfoDirector,
   Frames,
 } from "../style/film_style";
+import { setTimeout } from "timers";
 
 interface ParamTypes {
   id: string;
@@ -29,9 +29,15 @@ interface FilmTypes {
   year: number;
 }
 
+interface DirectTypes {
+  [index: number]: {
+    nameEn?: string;
+    nameRu?: string;
+  };
+}
+
 const Film: FC = () => {
   let { id } = useParams<ParamTypes>();
-  const { data } = useTypeSelector((state) => state.films);
 
   const [state, seState] = useState<number[]>(
     Object.values(arrayLink)
@@ -42,26 +48,30 @@ const Film: FC = () => {
   );
 
   const [film, setFilm] = useState<FilmTypes | null>(null);
-
-  // useEffect(() => {
-  //   if (data.length) {
-  //     setFilm(data.filter((item) => item.filmId.toString() === id));
-  //   }
-  // }, [data, id]);
+  const [director, setDirector] = useState<DirectTypes | null>(null);
 
   useEffect(() => {
     getAxiosFilm(state[0].toString()).then((response) => {
       setFilm(response);
     });
+
+    setTimeout(() => {
+      if (state.length > 2) {
+        getAxiosDirectTwo(state.slice(1)).then((response) => {
+          setDirector(response);
+        });
+      } else {
+        getAxiosDirect(state[1].toString()).then((response) => {
+          setDirector([response]);
+        });
+      }
+    }, 1000);
   }, [state]);
 
-  // const initialState = Object.values(arrayLink)
-  //   .map((fest: any) => {
-  //     return fest.filter((item: number[]) => item[0] === Number(id));
-  //   })
-  //   .flat(2);
-
-  console.log(film);
+  console.log(state);
+  if (director) {
+    console.log(director);
+  }
 
   return (
     <Content>
@@ -81,7 +91,7 @@ const Film: FC = () => {
                 <p>{film.nameEn}</p>
                 <div>
                   {film.countries.map((item, index) => (
-                    <span key={index}>{item.country}</span>
+                    <span key={index}>{item.country} </span>
                   ))}
                 </div>
                 <p>{film.year}</p>
@@ -139,4 +149,26 @@ const getAxiosDirect = async (id: string) => {
     }
   );
   return res.data;
+};
+
+const getAxiosDirectTwo = async (state: number[]) => {
+  const listRes = await state.map((item: any) => {
+    const res = axios.get(
+      `https://kinopoiskapiunofficial.tech/api/v1/staff/${item.toString()}`,
+      {
+        method: "GET",
+        headers: {
+          "X-API-KEY": "3624a818-0f9b-4117-91dd-3f6624d9d171",
+        },
+      }
+    );
+
+    return res;
+  });
+
+  const resAll = await Promise.all(listRes).then(function (values) {
+    return values.map((item: any) => item.data);
+  });
+
+  return resAll;
 };
