@@ -33,7 +33,13 @@ interface DirectTypes {
   [index: number]: {
     nameEn?: string;
     nameRu?: string;
+    posterUrl: string;
+    personId: number;
   };
+}
+
+interface FrameTypes {
+  frames: [{ image: string }];
 }
 
 const Film: FC = () => {
@@ -49,6 +55,7 @@ const Film: FC = () => {
 
   const [film, setFilm] = useState<FilmTypes | null>(null);
   const [director, setDirector] = useState<DirectTypes | null>(null);
+  const [frame, setFrame] = useState<FrameTypes | null>(null);
 
   useEffect(() => {
     getAxiosFilm(state[0].toString()).then((response) => {
@@ -65,48 +72,66 @@ const Film: FC = () => {
           setDirector([response]);
         });
       }
+    }, 500);
+
+    setTimeout(() => {
+      getAxiosFrame(state[0].toString()).then((response) => {
+        setFrame(response);
+      });
     }, 1000);
   }, [state]);
 
   console.log(state);
   if (director) {
-    console.log(director);
+    console.log(film);
+    console.log(frame);
+    console.log(director[0]);
   }
 
   return (
     <Content>
-      {film ? (
-        <>
-          <Header>
-            <button>1</button>
-            <button>2</button>
-          </Header>
-          <Main>
-            <Image>
-              <img src={film.posterUrlPreview} alt={film.nameEn} />
-            </Image>
-            <Info>
-              <InfoFilm>
-                <p>{film.nameRu}</p>
-                <p>{film.nameEn}</p>
-                <div>
-                  {film.countries.map((item, index) => (
-                    <span key={index}>{item.country} </span>
-                  ))}
-                </div>
-                <p>{film.year}</p>
-              </InfoFilm>
-              <InfoDirector>
-                <div>foto</div>
-                <div>name</div>
-              </InfoDirector>
-            </Info>
-            <Frames>123</Frames>
-          </Main>
-        </>
-      ) : (
-        <p>loading</p>
-      )}
+      {" "}
+      <Header>
+        <button>1</button>
+        <button>2</button>
+      </Header>
+      <Main>
+        {film ? (
+          <Image>
+            <img src={film.posterUrlPreview} alt={film.nameEn} />
+          </Image>
+        ) : (
+          <p>loading</p>
+        )}
+        <Info>
+          {film ? (
+            <InfoFilm>
+              <p>{film.nameRu}</p>
+              <p>{film.nameEn}</p>
+              <div>
+                {film.countries.map((item, index) => (
+                  <span key={index}>{item.country} </span>
+                ))}
+              </div>
+              <p>{film.year}</p>
+            </InfoFilm>
+          ) : (
+            <p>loading</p>
+          )}
+          {director ? (
+            <InfoDirector>
+              <div>
+                <img src={director[0].posterUrl} alt={director[0].nameEn} />
+              </div>
+              <div>{director[0].nameRu}</div>
+              <div>{director[0].nameEn}</div>
+            </InfoDirector>
+          ) : (
+            <p>loading</p>
+          )}
+        </Info>
+        {frame ? <Frames>123</Frames> : <p>loading</p>}
+      </Main>
     </Content>
   );
 };
@@ -136,6 +161,7 @@ const getAxiosFrame = async (id: string) => {
       },
     }
   );
+  return res.data;
 };
 
 const getAxiosDirect = async (id: string) => {
