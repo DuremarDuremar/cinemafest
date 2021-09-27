@@ -106,14 +106,17 @@ const Film: FC = () => {
         <Info>
           {film ? (
             <InfoFilm>
-              <p>{film.nameRu}</p>
-              <p>{film.nameEn}</p>
+              <div>
+                <p>{film.nameRu}</p>
+                <p>{film.nameEn}</p>
+              </div>
+
               <div>
                 {film.countries.map((item, index) => (
                   <span key={index}>{item.country} </span>
                 ))}
+                <p>{film.year}</p>
               </div>
-              <p>{film.year}</p>
             </InfoFilm>
           ) : (
             <p>loading</p>
