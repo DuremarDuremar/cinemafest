@@ -39,7 +39,12 @@ interface DirectTypes {
 }
 
 interface FrameTypes {
-  frames: [{ image: string }];
+  frames: [FrameItemTypes];
+}
+
+interface FrameItemTypes {
+  image: string;
+  preview: string;
 }
 
 const Film: FC = () => {
@@ -82,10 +87,10 @@ const Film: FC = () => {
   }, [state]);
 
   console.log(state);
-  if (director) {
+  if (director && frame) {
     console.log(film);
-    console.log(frame);
-    console.log(director[0]);
+    console.log(Object.values(frame.frames));
+    // console.log(Object.values(frame).map((item, index) => item.image));
   }
 
   return (
@@ -112,9 +117,9 @@ const Film: FC = () => {
               </div>
 
               <div>
-                {film.countries.map((item, index) => (
-                  <span key={index}>{item.country} </span>
-                ))}
+                {film.countries.map((item, index) =>
+                  index < 2 ? <span key={index}>{item.country} </span> : null
+                )}
                 <p>{film.year}</p>
               </div>
             </InfoFilm>
@@ -123,17 +128,25 @@ const Film: FC = () => {
           )}
           {director ? (
             <InfoDirector>
+              <img src={director[0].posterUrl} alt={director[0].nameEn} />
               <div>
-                <img src={director[0].posterUrl} alt={director[0].nameEn} />
+                <p>{director[0].nameRu}</p>
+                <p>{director[0].nameEn}</p>
               </div>
-              <div>{director[0].nameRu}</div>
-              <div>{director[0].nameEn}</div>
             </InfoDirector>
           ) : (
             <p>loading</p>
           )}
         </Info>
-        {frame ? <Frames>123</Frames> : <p>loading</p>}
+        {frame ? (
+          <Frames>
+            {frame.frames.map((item: FrameItemTypes, index: number) => {
+              return <span key={index}>{item.image}</span>;
+            })}
+          </Frames>
+        ) : (
+          <p>loading</p>
+        )}
       </Main>
     </Content>
   );

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Content = styled.div`
   padding: 0 5px;
+  color: #dfe4ea;
 `;
 
 export const Header = styled.div`
@@ -11,10 +12,11 @@ export const Header = styled.div`
   }
 `;
 export const Main = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
 `;
 export const Image = styled.div`
-  flex: 0 0 40%;
   border-right: 2px solid black;
 
   img {
@@ -27,23 +29,73 @@ export const Image = styled.div`
   }
 `;
 export const Info = styled.div`
-  flex: 0 0 30%;
+  border-right: 2px solid black;
+  font-size: 13px;
 `;
 export const InfoFilm = styled.div`
   div:first-child {
+    position: relative;
+
     &:after {
       content: "";
-      width: 100%;
-      /* position: absolute; */
+      width: 70%;
+      position: absolute;
       bottom: -50%;
-      left: 20%;
+      right: 5%;
+      height: 2px;
+      display: block;
+      background-color: #dfe4ea;
+    }
+    p:first-child {
+      font-size: 16px;
+    }
+    p:last-child {
+      text-align: right;
+    }
+  }
+  div:last-child {
+    position: relative;
+    margin-top: 50px;
+    text-align: center;
+    &:after {
+      content: "";
+      width: 70%;
+      position: absolute;
+      bottom: -50%;
+      left: 5%;
       height: 2px;
       display: block;
       background-color: #dfe4ea;
     }
   }
 `;
-export const InfoDirector = styled.div``;
-export const Frames = styled.div`
-  flex: 0 0 30%;
+export const InfoDirector = styled.div`
+  margin-top: 50px;
+  position: relative;
+  img {
+    display: block;
+    margin: 0px auto;
+    max-width: 240px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+      rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  }
+  div {
+    position: absolute;
+    bottom: 5%;
+    left: 10%;
+    p:first-child {
+      font-size: 16px;
+    }
+    &:after {
+      content: "";
+      width: 250%;
+      position: absolute;
+      bottom: -30%;
+      left: 8%;
+      height: 2px;
+      display: block;
+      background-color: #dfe4ea;
+    }
+  }
 `;
+export const Frames = styled.div``;
