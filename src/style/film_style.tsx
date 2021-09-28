@@ -17,8 +17,6 @@ export const Main = styled.div`
   grid-gap: 10px;
 `;
 export const Image = styled.div`
-  border-right: 2px solid black;
-
   img {
     max-width: 400px;
     display: block;
@@ -29,7 +27,6 @@ export const Image = styled.div`
   }
 `;
 export const Info = styled.div`
-  border-right: 2px solid black;
   font-size: 13px;
 `;
 export const InfoFilm = styled.div`
@@ -98,4 +95,66 @@ export const InfoDirector = styled.div`
     }
   }
 `;
-export const Frames = styled.div``;
+export const Frames = styled.div`
+  margin: 0px auto;
+  max-height: 550px;
+  overflow: auto;
+  border-top: 6px solid black;
+  div {
+    position: relative;
+    background-color: black;
+    img {
+      max-width: 100%;
+    }
+    &:after {
+      content: "";
+      width: calc(10px + 2vw);
+      position: absolute;
+      top: 0;
+      height: 100%;
+      display: block;
+      background: linear-gradient(
+        to top,
+        black 10%,
+        #fff 10% 20%,
+        black 20% 30%,
+        #fff 30% 40%,
+        black 40% 50%,
+        #fff 50% 60%,
+        black 60% 70%,
+        #fff 70% 80%,
+        black 80% 90%,
+        #fff 90% 100%
+      );
+    }
+    &:before {
+      content: "";
+      width: calc(10px + 2vw);
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      display: block;
+      background: linear-gradient(
+        to top,
+        black 10%,
+        #fff 10% 20%,
+        black 20% 30%,
+        #fff 30% 40%,
+        black 40% 50%,
+        #fff 50% 60%,
+        black 60% 70%,
+        #fff 70% 80%,
+        black 80% 90%,
+        #fff 90% 100%
+      );
+    }
+  }
+  ::-webkit-scrollbar {
+    width: 6px;
+    background-color: #f9f9fd;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #0f2027;
+  }
+`;

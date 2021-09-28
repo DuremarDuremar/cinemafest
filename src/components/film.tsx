@@ -140,9 +140,15 @@ const Film: FC = () => {
         </Info>
         {frame ? (
           <Frames>
-            {frame.frames.map((item: FrameItemTypes, index: number) => {
-              return <span key={index}>{item.image}</span>;
-            })}
+            {frame.frames
+              .slice(0, 8)
+              .map((item: FrameItemTypes, index: number) => {
+                return (
+                  <div key={index}>
+                    <img src={item.preview} alt={index.toString()} />
+                  </div>
+                );
+              })}
           </Frames>
         ) : (
           <p>loading</p>
