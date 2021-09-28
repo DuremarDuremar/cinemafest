@@ -15,15 +15,37 @@ export const Main = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
+  padding-top: 35px;
 `;
 export const Image = styled.div`
+  position: relative;
+
   img {
     max-width: 400px;
     display: block;
     margin: 0px auto;
+    position: relative;
     box-shadow: rgba(0, 0, 0, 0.4) 5px 5px, rgba(0, 0, 0, 0.3) 10px 10px,
       rgba(0, 0, 0, 0.2) 15px 15px, rgba(0, 0, 0, 0.1) 20px 20px,
       rgba(0, 0, 0, 0.05) 25px 25px;
+    cursor: pointer;
+
+    :hover ~ i {
+      opacity: 1;
+    }
+  }
+
+  i {
+    transition: all 1s ease-in-out;
+    position: absolute;
+    top: 0;
+    right: 40px;
+    transform: rotate(-45deg);
+    opacity: 0;
+    :hover {
+      opacity: 1;
+      cursor: pointer;
+    }
   }
 `;
 export const Info = styled.div`
@@ -44,7 +66,7 @@ export const InfoFilm = styled.div`
       background-color: #dfe4ea;
     }
     p:first-child {
-      font-size: 16px;
+      font-size: 18px;
     }
     p:last-child {
       text-align: right;
@@ -156,5 +178,22 @@ export const Frames = styled.div`
   }
   ::-webkit-scrollbar-thumb {
     background-color: #0f2027;
+  }
+`;
+
+export const Exit = styled.div`
+  &:hover img {
+    background-color: black;
+    box-shadow: 10px 5px 5px #dfe4ea;
+    transition: all 0.6s ease-in-out;
+  }
+  img {
+    width: 65px;
+    height: 65px;
+    background-color: #dfe4ea;
+    border-radius: 50%;
+    display: block;
+    margin: 0px auto;
+    cursor: pointer;
   }
 `;

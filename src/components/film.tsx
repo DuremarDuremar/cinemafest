@@ -3,16 +3,18 @@ import { useParams } from "react-router";
 import axios from "axios";
 
 import { arrayLink } from "../reducer/arrayLink";
+import logo from "../assets/logo.png";
+import { Logo } from "../style/fest_header_style";
 
 import {
   Content,
-  Header,
   Main,
   Image,
   Info,
   InfoFilm,
   InfoDirector,
   Frames,
+  Exit,
 } from "../style/film_style";
 import { setTimeout } from "timers";
 
@@ -95,20 +97,19 @@ const Film: FC = () => {
 
   return (
     <Content>
-      {" "}
-      <Header>
-        <button>1</button>
-        <button>2</button>
-      </Header>
       <Main>
         {film ? (
           <Image>
             <img src={film.posterUrlPreview} alt={film.nameEn} />
+            <i className="fas fa-arrow-right fa-4x"></i>
           </Image>
         ) : (
           <p>loading</p>
         )}
         <Info>
+          <Exit>
+            <img src={logo} alt="logo" />
+          </Exit>
           {film ? (
             <InfoFilm>
               <div>
