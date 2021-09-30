@@ -90,14 +90,14 @@ const Film: FC = () => {
   const nextFilm = () => {
     console.log(state, "state");
 
-    Object.values(arrayLink).filter((item: any, index, array: any) => {
-      if (state[0] === item[0] && state[1] === item[1]) {
-        // setState(array[index + 1]);
-        console.log(index);
-      } else {
-        console.log("ggg");
-      }
-    });
+    Object.values(arrayLink)
+      .flat(1)
+      .filter((item: any, index, array: any) => {
+        if (state[0] === item[0] && state[1] === item[1]) {
+          setState(array[index + 1]);
+          console.log(index);
+        }
+      });
   };
 
   return (
