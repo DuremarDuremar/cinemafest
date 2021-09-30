@@ -4,7 +4,6 @@ import axios from "axios";
 
 import { arrayLink } from "../reducer/arrayLink";
 import logo from "../assets/logo.png";
-import { Logo } from "../style/fest_header_style";
 
 import {
   Content,
@@ -52,7 +51,7 @@ interface FrameItemTypes {
 const Film: FC = () => {
   let { id } = useParams<ParamTypes>();
 
-  const [state, seState] = useState<number[]>(
+  const [state, setState] = useState<number[]>(
     Object.values(arrayLink)
       .map((fest: any) => {
         return fest.filter((item: number[]) => item[0] === Number(id));
@@ -88,12 +87,18 @@ const Film: FC = () => {
     }, 1000);
   }, [state]);
 
-  console.log(state);
-  if (director && frame) {
-    console.log(film);
-    console.log(Object.values(frame.frames));
-    // console.log(Object.values(frame).map((item, index) => item.image));
-  }
+  const nextFilm = () => {
+    console.log(state, "state");
+
+    Object.values(arrayLink).filter((item: any, index, array: any) => {
+      if (state[0] === item[0] && state[1] === item[1]) {
+        // setState(array[index + 1]);
+        console.log(index);
+      } else {
+        console.log("ggg");
+      }
+    });
+  };
 
   return (
     <Content>
@@ -101,13 +106,16 @@ const Film: FC = () => {
         {film ? (
           <Image>
             <img src={film.posterUrlPreview} alt={film.nameEn} />
-            <i className="fas fa-arrow-right fa-4x"></i>
+            <i
+              className="fas fa-arrow-right fa-4x"
+              onClick={() => nextFilm()}
+            />
           </Image>
         ) : (
           <p>loading</p>
         )}
         <Info>
-          <Exit>
+          <Exit to="/">
             <img src={logo} alt="logo" />
           </Exit>
           {film ? (

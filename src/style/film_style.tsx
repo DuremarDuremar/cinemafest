@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Content = styled.div`
   padding: 0 5px;
@@ -36,12 +37,16 @@ export const Image = styled.div`
   }
 
   i {
-    transition: all 1s ease-in-out;
+    transition: all 0.7s ease-in-out;
     position: absolute;
     top: 0;
     right: 40px;
     transform: rotate(-45deg);
     opacity: 0;
+    box-shadow: 5px 5px 5px 5px #bdc3c7;
+    color: #dfe4ea;
+    background-color: black;
+
     :hover {
       opacity: 1;
       cursor: pointer;
@@ -102,6 +107,7 @@ export const InfoDirector = styled.div`
     position: absolute;
     bottom: 5%;
     left: 10%;
+    background: rgb(15, 32, 39, 0.6);
     p:first-child {
       font-size: 16px;
     }
@@ -119,7 +125,7 @@ export const InfoDirector = styled.div`
 `;
 export const Frames = styled.div`
   margin: 0px auto;
-  max-height: 550px;
+  max-height: 580px;
   overflow: auto;
   border-top: 6px solid black;
   div {
@@ -181,7 +187,7 @@ export const Frames = styled.div`
   }
 `;
 
-export const Exit = styled.div`
+export const Exit = styled(Link)`
   &:hover img {
     background-color: black;
     box-shadow: 10px 5px 5px #dfe4ea;
