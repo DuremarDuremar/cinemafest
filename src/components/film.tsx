@@ -1,6 +1,7 @@
 import React, { FC, useState, useEffect } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 import { arrayLink } from "../reducer/arrayLink";
 import logo from "../assets/logo.png";
@@ -51,17 +52,25 @@ interface FrameItemTypes {
 const Film: FC = () => {
   let { id } = useParams<ParamTypes>();
 
-  const [state, setState] = useState<number[]>(
-    Object.values(arrayLink)
+  const renderId = (id: string) => {
+    return Object.values(arrayLink)
       .map((fest: any) => {
         return fest.filter((item: number[]) => item[0] === Number(id));
       })
-      .flat(2)
-  );
+      .flat(2);
+  };
 
+  const [state, setState] = useState<number[]>(renderId(id));
   const [film, setFilm] = useState<FilmTypes | null>(null);
   const [director, setDirector] = useState<DirectTypes | null>(null);
   const [frame, setFrame] = useState<FrameTypes | null>(null);
+
+  useEffect(() => {
+    setFilm(null);
+    setDirector(null);
+    setFrame(null);
+    setState(renderId(id));
+  }, [id]);
 
   useEffect(() => {
     getAxiosFilm(state[0].toString()).then((response) => {
@@ -88,16 +97,19 @@ const Film: FC = () => {
   }, [state]);
 
   const nextFilm = () => {
-    console.log(state, "state");
-
-    Object.values(arrayLink)
+    const link = Object.values(arrayLink)
       .flat(1)
-      .filter((item: any, index, array: any) => {
+      .map((item: any, index, array: any) => {
         if (state[0] === item[0] && state[1] === item[1]) {
-          setState(array[index + 1]);
-          console.log(index);
+          return array[index + 1];
+        } else {
+          return null;
         }
-      });
+      })
+      .filter(Boolean)
+      .flat(1);
+
+    return link[0].toString();
   };
 
   return (
@@ -106,10 +118,9 @@ const Film: FC = () => {
         {film ? (
           <Image>
             <img src={film.posterUrlPreview} alt={film.nameEn} />
-            <i
-              className="fas fa-arrow-right fa-4x"
-              onClick={() => nextFilm()}
-            />
+            <Link to={() => nextFilm()}>
+              <i className="fas fa-arrow-right fa-4x" />
+            </Link>
           </Image>
         ) : (
           <p>loading</p>
