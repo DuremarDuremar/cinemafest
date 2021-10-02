@@ -52,12 +52,29 @@ interface FrameItemTypes {
 const Film: FC = () => {
   let { id } = useParams<ParamTypes>();
 
+  let arrayFilm = Object.values(arrayLink).flat(1);
+
+  // const renderId = (id: string) => {
+  //   return Object.values(arrayLink)
+  //     .map((fest: any) => {
+  //       return fest.filter((item: number[]) => item[0] === Number(id));
+  //     })
+  //     .flat(2);
+  // };
+
+  console.log(arrayFilm);
+
   const renderId = (id: string) => {
-    return Object.values(arrayLink)
-      .map((fest: any) => {
-        return fest.filter((item: number[]) => item[0] === Number(id));
+    return arrayFilm
+      .map((item: any) => {
+        if (item[0] === Number(id)) {
+          return item;
+        } else {
+          return null;
+        }
       })
-      .flat(2);
+      .filter(Boolean)
+      .flat(1);
   };
 
   const [state, setState] = useState<number[]>(renderId(id));
@@ -97,9 +114,8 @@ const Film: FC = () => {
   }, [state]);
 
   const nextFilm = () => {
-    const link = Object.values(arrayLink)
-      .flat(1)
-      .map((item: any, index, array: any) => {
+    const link = arrayFilm
+      .map((item: number[], index: number, array: any) => {
         if (state[0] === item[0] && state[1] === item[1]) {
           return array[index + 1];
         } else {
@@ -118,7 +134,7 @@ const Film: FC = () => {
         {film ? (
           <Image>
             <img src={film.posterUrlPreview} alt={film.nameEn} />
-            <Link to={() => nextFilm()}>
+            <Link to={() => nextFilm()} className="link">
               <i className="fas fa-arrow-right fa-4x" />
             </Link>
           </Image>
@@ -144,7 +160,7 @@ const Film: FC = () => {
               </div>
             </InfoFilm>
           ) : (
-            <p>loading</p>
+            <p>loadinge</p>
           )}
           {director ? (
             <InfoDirector>

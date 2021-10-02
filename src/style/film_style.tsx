@@ -31,12 +31,12 @@ export const Image = styled.div`
       rgba(0, 0, 0, 0.05) 25px 25px;
     cursor: pointer;
 
-    :hover ~ i {
+    :hover ~ .link {
       opacity: 1;
     }
   }
 
-  i {
+  .link {
     transition: all 0.7s ease-in-out;
     position: absolute;
     top: 0;

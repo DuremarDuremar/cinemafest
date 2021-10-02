@@ -1,4 +1,8 @@
-export const arrayLink: any = {
+interface ArrayFilmsTypes {
+  [index: string]: number[][];
+}
+
+export const arrayLink: ArrayFilmsTypes = {
   Cannes2010s: [
     [1043758, 493688],
     [1169370, 817639],
