@@ -1,4 +1,4 @@
-import React, { FC, useState, useCallback, useEffect } from "react";
+import React, { FC, useState, useCallback, useMemo, useEffect } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
 
@@ -52,7 +52,7 @@ interface FrameItemTypes {
 const Film: FC = () => {
   let { id } = useParams<ParamTypes>();
 
-  let arrayFilm = Object.values(arrayLink).flat(1);
+  let arrayFilm = useMemo(() => Object.values(arrayLink).flat(1), []);
 
   const renderId = useCallback(
     (id: string) => {
@@ -67,7 +67,7 @@ const Film: FC = () => {
         .filter(Boolean)
         .flat(1);
     },
-    [id]
+    [arrayFilm]
   );
 
   console.log(renderId(id));
@@ -108,7 +108,7 @@ const Film: FC = () => {
     }, 1000);
   }, [state]);
 
-  const newFilm = (next?: boolean) => {
+  const newFilm = (next: any) => {
     const link = arrayFilm
       .map((item: number[], index: number, array: number[][]) => {
         if (state[0] === item[0] && state[1] === item[1]) {
@@ -119,8 +119,13 @@ const Film: FC = () => {
       })
       .filter(Boolean)
       .flat(1);
-
-    return link[0].toString();
+    if (link[0]) {
+      return link[0].toString();
+    } else {
+      return state[0] === arrayFilm[0][0]
+        ? arrayFilm[arrayFilm.length - 1][0].toString()
+        : arrayFilm[0][0].toString();
+    }
   };
 
   return (
@@ -129,7 +134,7 @@ const Film: FC = () => {
         {film ? (
           <Image>
             <img src={film.posterUrlPreview} alt={film.nameEn} />
-            <LinkImage to={() => newFilm(true)} className="link" next>
+            <LinkImage to={() => newFilm(true)} className="link" next="next">
               <i className="fas fa-arrow-right fa-4x" />
             </LinkImage>
             <LinkImage to={() => newFilm(false)} className="link">

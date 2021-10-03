@@ -37,7 +37,7 @@ export const Image = styled.div`
   }
 `;
 
-export const LinkImage = styled(Link)<{ next?: boolean }>`
+export const LinkImage = styled(Link)<{ next?: string }>`
   transition: all 0.7s ease-in-out;
   position: absolute;
   transform: ${(props) => (props.next ? "rotate(-45deg)" : "rotate(135deg)")};
