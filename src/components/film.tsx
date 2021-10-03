@@ -1,7 +1,6 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState, useCallback, useEffect } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 import { arrayLink } from "../reducer/arrayLink";
 import logo from "../assets/logo.png";
@@ -15,6 +14,7 @@ import {
   InfoDirector,
   Frames,
   Exit,
+  LinkImage,
 } from "../style/film_style";
 import { setTimeout } from "timers";
 
@@ -54,28 +54,23 @@ const Film: FC = () => {
 
   let arrayFilm = Object.values(arrayLink).flat(1);
 
-  // const renderId = (id: string) => {
-  //   return Object.values(arrayLink)
-  //     .map((fest: any) => {
-  //       return fest.filter((item: number[]) => item[0] === Number(id));
-  //     })
-  //     .flat(2);
-  // };
+  const renderId = useCallback(
+    (id: string) => {
+      return arrayFilm
+        .map((item: number[]) => {
+          if (item[0] === Number(id)) {
+            return item;
+          } else {
+            return [];
+          }
+        })
+        .filter(Boolean)
+        .flat(1);
+    },
+    [id]
+  );
 
-  console.log(arrayFilm);
-
-  const renderId = (id: string) => {
-    return arrayFilm
-      .map((item: any) => {
-        if (item[0] === Number(id)) {
-          return item;
-        } else {
-          return null;
-        }
-      })
-      .filter(Boolean)
-      .flat(1);
-  };
+  console.log(renderId(id));
 
   const [state, setState] = useState<number[]>(renderId(id));
   const [film, setFilm] = useState<FilmTypes | null>(null);
@@ -87,7 +82,7 @@ const Film: FC = () => {
     setDirector(null);
     setFrame(null);
     setState(renderId(id));
-  }, [id]);
+  }, [id, renderId]);
 
   useEffect(() => {
     getAxiosFilm(state[0].toString()).then((response) => {
@@ -113,13 +108,13 @@ const Film: FC = () => {
     }, 1000);
   }, [state]);
 
-  const nextFilm = () => {
+  const newFilm = (next?: boolean) => {
     const link = arrayFilm
-      .map((item: number[], index: number, array: any) => {
+      .map((item: number[], index: number, array: number[][]) => {
         if (state[0] === item[0] && state[1] === item[1]) {
-          return array[index + 1];
+          return next ? array[index + 1] : array[index - 1];
         } else {
-          return null;
+          return [];
         }
       })
       .filter(Boolean)
@@ -134,9 +129,12 @@ const Film: FC = () => {
         {film ? (
           <Image>
             <img src={film.posterUrlPreview} alt={film.nameEn} />
-            <Link to={() => nextFilm()} className="link">
+            <LinkImage to={() => newFilm(true)} className="link" next>
               <i className="fas fa-arrow-right fa-4x" />
-            </Link>
+            </LinkImage>
+            <LinkImage to={() => newFilm(false)} className="link">
+              <i className="fas fa-arrow-right fa-4x" />
+            </LinkImage>
           </Image>
         ) : (
           <p>loading</p>

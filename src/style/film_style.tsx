@@ -35,24 +35,35 @@ export const Image = styled.div`
       opacity: 1;
     }
   }
+`;
 
-  .link {
-    transition: all 0.7s ease-in-out;
-    position: absolute;
-    top: 0;
-    right: 40px;
-    transform: rotate(-45deg);
-    opacity: 0;
-    box-shadow: 5px 5px 5px 5px #bdc3c7;
-    color: #dfe4ea;
-    background-color: black;
+export const LinkImage = styled(Link)<{ next?: boolean }>`
+  transition: all 0.7s ease-in-out;
+  position: absolute;
+  transform: ${(props) => (props.next ? "rotate(-45deg)" : "rotate(135deg)")};
+  ${(props) =>
+    props.next &&
+    `
+        top: 0;
+        right:10%;     
+  `};
+  ${(props) =>
+    !props.next &&
+    `
+        bottom: 10%;
+        left: 10%;     
+  `};
+  opacity: 0;
+  box-shadow: 5px 5px 5px 5px #bdc3c7;
+  color: #dfe4ea;
+  background-color: black;
 
-    :hover {
-      opacity: 1;
-      cursor: pointer;
-    }
+  :hover {
+    opacity: 1;
+    cursor: pointer;
   }
 `;
+
 export const Info = styled.div`
   font-size: 13px;
 `;
