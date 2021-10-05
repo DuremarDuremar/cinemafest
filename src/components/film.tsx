@@ -2,7 +2,15 @@ import React, { FC, useState, useCallback, useMemo, useEffect } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
 
+import { useTypeSelector } from "../hooks/useTypeSelector";
 import { arrayLink } from "../reducer/arrayLink";
+import {
+  ParamTypes,
+  FilmTypes,
+  DirectTypes,
+  FrameTypes,
+  FrameItemTypes,
+} from "../types/film";
 import logo from "../assets/logo.png";
 
 import {
@@ -18,41 +26,14 @@ import {
 } from "../style/film_style";
 import { setTimeout } from "timers";
 
-interface ParamTypes {
-  id: string;
-}
-
-interface FilmTypes {
-  filmId: number;
-  posterUrlPreview: string;
-  nameEn?: string;
-  nameRu?: string;
-  countries: [{ country: string }];
-  year: number;
-}
-
-interface DirectTypes {
-  [index: number]: {
-    nameEn?: string;
-    nameRu?: string;
-    posterUrl: string;
-    personId: number;
-  };
-}
-
-interface FrameTypes {
-  frames: [FrameItemTypes];
-}
-
-interface FrameItemTypes {
-  image: string;
-  preview: string;
-}
-
 const Film: FC = () => {
   let { id } = useParams<ParamTypes>();
 
   let arrayFilm = useMemo(() => Object.values(arrayLink).flat(1), []);
+
+  const { respons950, respons730, respons520 } = useTypeSelector(
+    (state) => state.respons
+  );
 
   const renderId = useCallback(
     (id: string) => {
@@ -70,7 +51,7 @@ const Film: FC = () => {
     [arrayFilm]
   );
 
-  console.log(renderId(id));
+  // console.log(renderId(id));
 
   const [state, setState] = useState<number[]>(renderId(id));
   const [film, setFilm] = useState<FilmTypes | null>(null);
@@ -108,7 +89,7 @@ const Film: FC = () => {
     }, 1000);
   }, [state]);
 
-  const newFilm = (next: any) => {
+  const newFilm = (next: boolean) => {
     const link = arrayFilm
       .map((item: number[], index: number, array: number[][]) => {
         if (state[0] === item[0] && state[1] === item[1]) {
@@ -126,11 +107,11 @@ const Film: FC = () => {
         ? arrayFilm[arrayFilm.length - 1][0].toString()
         : arrayFilm[0][0].toString();
     }
-  };
+  }; // функция перебора массива
 
   return (
     <Content>
-      <Main>
+      <Main respons950={respons950}>
         {film ? (
           <Image>
             <img src={film.posterUrlPreview} alt={film.nameEn} />
@@ -178,7 +159,7 @@ const Film: FC = () => {
           )}
         </Info>
         {frame ? (
-          <Frames>
+          <Frames respons950={respons950}>
             {frame.frames
               .slice(0, 8)
               .map((item: FrameItemTypes, index: number) => {

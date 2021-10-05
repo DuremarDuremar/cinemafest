@@ -1,6 +1,34 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+const linearGradientTop = `linear-gradient(
+  to top,
+  black 10%,
+  #fff 10% 20%,
+  black 20% 30%,
+  #fff 30% 40%,
+  black 40% 50%,
+  #fff 50% 60%,
+  black 60% 70%,
+  #fff 70% 80%,
+  black 80% 90%,
+  #fff 90% 100%
+)`;
+
+const linearGradientLeft = `linear-gradient(
+  to left,
+  black 10%,
+  #fff 10% 20%,
+  black 20% 30%,
+  #fff 30% 40%,
+  black 40% 50%,
+  #fff 50% 60%,
+  black 60% 70%,
+  #fff 70% 80%,
+  black 80% 90%,
+  #fff 90% 100%
+)`;
+
 export const Content = styled.div`
   padding: 0 5px;
   color: #dfe4ea;
@@ -12,9 +40,10 @@ export const Header = styled.div`
     background-color: #dfe4ea;
   }
 `;
-export const Main = styled.div`
+export const Main = styled.div<{ respons950: boolean }>`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: ${(props) =>
+    props.respons950 ? "repeat(3, 1fr)" : "repeat(2, 1fr)"};
   grid-gap: 10px;
   padding-top: 35px;
 `;
@@ -40,7 +69,7 @@ export const Image = styled.div`
 export const LinkImage = styled(Link)<{ next?: string }>`
   transition: all 0.7s ease-in-out;
   position: absolute;
-  transform: ${(props) => (props.next ? "rotate(-45deg)" : "rotate(135deg)")};
+  transform: ${(props) => (props.next ? "rotate(-45deg)" : "rotate(-135deg)")};
   ${(props) =>
     props.next &&
     `
@@ -50,8 +79,8 @@ export const LinkImage = styled(Link)<{ next?: string }>`
   ${(props) =>
     !props.next &&
     `
-        bottom: 10%;
-        left: 10%;     
+        top:0;
+        left: 12%;     
   `};
   opacity: 0;
   box-shadow: 5px 5px 5px 5px #bdc3c7;
@@ -134,16 +163,29 @@ export const InfoDirector = styled.div`
     }
   }
 `;
-export const Frames = styled.div`
+export const Frames = styled.div<{ respons950: boolean }>`
   margin: 0px auto;
   max-height: 580px;
   overflow: auto;
   border-top: 6px solid black;
+  ${(props) =>
+    !props.respons950 &&
+    `
+    grid-column: span 2 / auto; 
+    margin: 30px auto 0;
+    display:flex;
+    max-width: 600px;
+  `};
   div {
     position: relative;
     background-color: black;
+
     img {
-      max-width: 100%;
+      ${(props) =>
+        props.respons950 &&
+        `
+    max-width: 100%;
+    `};
     }
     &:after {
       content: "";
@@ -152,19 +194,8 @@ export const Frames = styled.div`
       top: 0;
       height: 100%;
       display: block;
-      background: linear-gradient(
-        to top,
-        black 10%,
-        #fff 10% 20%,
-        black 20% 30%,
-        #fff 30% 40%,
-        black 40% 50%,
-        #fff 50% 60%,
-        black 60% 70%,
-        #fff 70% 80%,
-        black 80% 90%,
-        #fff 90% 100%
-      );
+      background: ${(props) =>
+        props.respons950 ? linearGradientTop : linearGradientLeft};
     }
     &:before {
       content: "";
@@ -174,23 +205,13 @@ export const Frames = styled.div`
       right: 0;
       height: 100%;
       display: block;
-      background: linear-gradient(
-        to top,
-        black 10%,
-        #fff 10% 20%,
-        black 20% 30%,
-        #fff 30% 40%,
-        black 40% 50%,
-        #fff 50% 60%,
-        black 60% 70%,
-        #fff 70% 80%,
-        black 80% 90%,
-        #fff 90% 100%
-      );
+      background: ${(props) =>
+        props.respons950 ? linearGradientTop : linearGradientLeft};
     }
   }
   ::-webkit-scrollbar {
     width: 6px;
+    height: 4px;
     background-color: #f9f9fd;
   }
   ::-webkit-scrollbar-thumb {
