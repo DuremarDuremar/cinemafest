@@ -189,21 +189,21 @@ export const Frames = styled.div<{ respons950: boolean }>`
     }
     &:after {
       content: "";
-      width: calc(10px + 2vw);
+      width: ${(props) => (props.respons950 ? "25px" : "100%")};
+      height: ${(props) => (props.respons950 ? "100%" : "15px")};
       position: absolute;
       top: 0;
-      height: 100%;
       display: block;
       background: ${(props) =>
         props.respons950 ? linearGradientTop : linearGradientLeft};
     }
     &:before {
       content: "";
-      width: calc(10px + 2vw);
+      width: ${(props) => (props.respons950 ? "25px" : "100%")};
+      height: ${(props) => (props.respons950 ? "100%" : "15px")};
       position: absolute;
-      top: 0;
+      bottom: 0;
       right: 0;
-      height: 100%;
       display: block;
       background: ${(props) =>
         props.respons950 ? linearGradientTop : linearGradientLeft};
@@ -211,7 +211,7 @@ export const Frames = styled.div<{ respons950: boolean }>`
   }
   ::-webkit-scrollbar {
     width: 6px;
-    height: 4px;
+    height: 6px;
     background-color: #f9f9fd;
   }
   ::-webkit-scrollbar-thumb {
