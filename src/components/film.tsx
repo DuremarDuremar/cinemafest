@@ -31,7 +31,7 @@ const Film: FC = () => {
 
   let arrayFilm = useMemo(() => Object.values(arrayLink).flat(1), []);
 
-  const { respons950, respons730, respons520 } = useTypeSelector(
+  const { respons950, respons1025, respons520 } = useTypeSelector(
     (state) => state.respons
   );
 
@@ -111,7 +111,7 @@ const Film: FC = () => {
 
   return (
     <Content>
-      <Main respons950={respons950}>
+      <Main respons1025={respons1025}>
         {film ? (
           <Image>
             <img src={film.posterUrlPreview} alt={film.nameEn} />
@@ -159,7 +159,7 @@ const Film: FC = () => {
           )}
         </Info>
         {frame ? (
-          <Frames respons950={respons950}>
+          <Frames respons1025={respons1025}>
             {frame.frames
               .slice(0, 8)
               .map((item: FrameItemTypes, index: number) => {

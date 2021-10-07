@@ -5,6 +5,7 @@ import {
 } from "../../types/respons";
 
 const initianalState: ResponsState = {
+  respons1025: false,
   respons950: false,
   respons730: false,
   respons520: false,
@@ -15,6 +16,11 @@ export const responsReducer = (
   action: ResponsAction
 ): ResponsState => {
   switch (action.type) {
+    case ResponsActionTypes.RESPONS_1025:
+      return {
+        ...state,
+        respons1025: action.payload,
+      };
     case ResponsActionTypes.RESPONS_950:
       return {
         ...state,
@@ -30,6 +36,7 @@ export const responsReducer = (
         ...state,
         respons520: action.payload,
       };
+
     default:
       return state;
   }

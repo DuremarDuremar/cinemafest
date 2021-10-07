@@ -40,10 +40,10 @@ export const Header = styled.div`
     background-color: #dfe4ea;
   }
 `;
-export const Main = styled.div<{ respons950: boolean }>`
+export const Main = styled.div<{ respons1025: boolean }>`
   display: grid;
   grid-template-columns: ${(props) =>
-    props.respons950 ? "repeat(3, 1fr)" : "repeat(2, 1fr)"};
+    props.respons1025 ? "repeat(3, 1fr)" : "repeat(2, 1fr)"};
   grid-gap: 10px;
   padding-top: 35px;
 `;
@@ -163,50 +163,52 @@ export const InfoDirector = styled.div`
     }
   }
 `;
-export const Frames = styled.div<{ respons950: boolean }>`
+export const Frames = styled.div<{ respons1025: boolean }>`
   margin: 0px auto;
   max-height: 580px;
   overflow: auto;
   border-top: 6px solid black;
   ${(props) =>
-    !props.respons950 &&
+    !props.respons1025 &&
     `
     grid-column: span 2 / auto; 
     margin: 30px auto 0;
     display:flex;
-    max-width: 600px;
+    width: calc(100% - 60px);
   `};
   div {
     position: relative;
     background-color: black;
 
     img {
+      display: block;
       ${(props) =>
-        props.respons950 &&
+        props.respons1025 &&
         `
-    max-width: 100%;
+       max-width: 100%;
+      
     `};
     }
     &:after {
       content: "";
-      width: ${(props) => (props.respons950 ? "25px" : "100%")};
-      height: ${(props) => (props.respons950 ? "100%" : "15px")};
+      width: ${(props) => (props.respons1025 ? "25px" : "100%")};
+      height: ${(props) => (props.respons1025 ? "100%" : "15px")};
       position: absolute;
       top: 0;
       display: block;
       background: ${(props) =>
-        props.respons950 ? linearGradientTop : linearGradientLeft};
+        props.respons1025 ? linearGradientTop : linearGradientLeft};
     }
     &:before {
       content: "";
-      width: ${(props) => (props.respons950 ? "25px" : "100%")};
-      height: ${(props) => (props.respons950 ? "100%" : "15px")};
+      width: ${(props) => (props.respons1025 ? "25px" : "100%")};
+      height: ${(props) => (props.respons1025 ? "100%" : "15px")};
       position: absolute;
-      bottom: 0;
+      bottom: 1025;
       right: 0;
       display: block;
       background: ${(props) =>
-        props.respons950 ? linearGradientTop : linearGradientLeft};
+        props.respons1025 ? linearGradientTop : linearGradientLeft};
     }
   }
   ::-webkit-scrollbar {
