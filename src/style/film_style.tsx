@@ -204,7 +204,7 @@ export const Frames = styled.div<{ respons1025: boolean }>`
       width: ${(props) => (props.respons1025 ? "25px" : "100%")};
       height: ${(props) => (props.respons1025 ? "100%" : "15px")};
       position: absolute;
-      bottom: 1025;
+      bottom: 0;
       right: 0;
       display: block;
       background: ${(props) =>

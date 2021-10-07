@@ -12,7 +12,7 @@ import {
   respons1025,
 } from "./reducer/actions/responsA";
 import { Global, Content } from "./style/app_style";
-import Film from "./components/film";
+import Film from "./pages/film";
 
 const App: FC = () => {
   const dispatch = useDispatch();

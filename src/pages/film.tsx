@@ -1,30 +1,15 @@
 import React, { FC, useState, useCallback, useMemo, useEffect } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
+import { setTimeout } from "timers";
 
 import { useTypeSelector } from "../hooks/useTypeSelector";
 import { arrayLink } from "../reducer/arrayLink";
-import {
-  ParamTypes,
-  FilmTypes,
-  DirectTypes,
-  FrameTypes,
-  FrameItemTypes,
-} from "../types/film";
-import logo from "../assets/logo.png";
-
-import {
-  Content,
-  Main,
-  Image,
-  Info,
-  InfoFilm,
-  InfoDirector,
-  Frames,
-  Exit,
-  LinkImage,
-} from "../style/film_style";
-import { setTimeout } from "timers";
+import { ParamTypes, FilmTypes, DirectTypes, FrameTypes } from "../types/film";
+import FestPoster from "../components/film_poster";
+import FilmInfo from "../components/film_info";
+import FilmFrames from "../components/film_frames";
+import { Content, Main } from "../style/film_style";
 
 const Film: FC = () => {
   let { id } = useParams<ParamTypes>();
@@ -51,13 +36,11 @@ const Film: FC = () => {
     [arrayFilm]
   );
 
-  // console.log(renderId(id));
-
   const [state, setState] = useState<number[]>(renderId(id));
   const [film, setFilm] = useState<FilmTypes | null>(null);
   const [director, setDirector] = useState<DirectTypes | null>(null);
   const [frame, setFrame] = useState<FrameTypes | null>(null);
-
+  console.log(state, "kk");
   useEffect(() => {
     setFilm(null);
     setDirector(null);
@@ -89,87 +72,17 @@ const Film: FC = () => {
     }, 1000);
   }, [state]);
 
-  const newFilm = (next: boolean) => {
-    const link = arrayFilm
-      .map((item: number[], index: number, array: number[][]) => {
-        if (state[0] === item[0] && state[1] === item[1]) {
-          return next ? array[index + 1] : array[index - 1];
-        } else {
-          return [];
-        }
-      })
-      .filter(Boolean)
-      .flat(1);
-    if (link[0]) {
-      return link[0].toString();
-    } else {
-      return state[0] === arrayFilm[0][0]
-        ? arrayFilm[arrayFilm.length - 1][0].toString()
-        : arrayFilm[0][0].toString();
-    }
-  }; // функция перебора массива
-
   return (
     <Content>
       <Main respons1025={respons1025}>
         {film ? (
-          <Image>
-            <img src={film.posterUrlPreview} alt={film.nameEn} />
-            <LinkImage to={() => newFilm(true)} className="link" next="next">
-              <i className="fas fa-arrow-right fa-4x" />
-            </LinkImage>
-            <LinkImage to={() => newFilm(false)} className="link">
-              <i className="fas fa-arrow-right fa-4x" />
-            </LinkImage>
-          </Image>
+          <FestPoster state={state} film={film} arrayFilm={arrayFilm} />
         ) : (
           <p>loading</p>
         )}
-        <Info>
-          <Exit to="/">
-            <img src={logo} alt="logo" />
-          </Exit>
-          {film ? (
-            <InfoFilm>
-              <div>
-                <p>{film.nameRu}</p>
-                <p>{film.nameEn}</p>
-              </div>
-
-              <div>
-                {film.countries.map((item, index) =>
-                  index < 2 ? <span key={index}>{item.country} </span> : null
-                )}
-                <p>{film.year}</p>
-              </div>
-            </InfoFilm>
-          ) : (
-            <p>loadinge</p>
-          )}
-          {director ? (
-            <InfoDirector>
-              <img src={director[0].posterUrl} alt={director[0].nameEn} />
-              <div>
-                <p>{director[0].nameRu}</p>
-                <p>{director[0].nameEn}</p>
-              </div>
-            </InfoDirector>
-          ) : (
-            <p>loading</p>
-          )}
-        </Info>
+        <FilmInfo film={film} director={director} />
         {frame ? (
-          <Frames respons1025={respons1025}>
-            {frame.frames
-              .slice(0, 8)
-              .map((item: FrameItemTypes, index: number) => {
-                return (
-                  <div key={index}>
-                    <img src={item.preview} alt={index.toString()} />
-                  </div>
-                );
-              })}
-          </Frames>
+          <FilmFrames frame={frame} respons1025={respons1025} />
         ) : (
           <p>loading</p>
         )}
