@@ -9,7 +9,8 @@ import { ParamTypes, FilmTypes, DirectTypes, FrameTypes } from "../types/film";
 import FestPoster from "../components/film_poster";
 import FilmInfo from "../components/film_info";
 import FilmFrames from "../components/film_frames";
-import { Content, Main, Modal } from "../style/film_style";
+import FilmModal from "../components/film_modal";
+import { Content, Main } from "../style/film_style";
 
 const Film: FC = () => {
   let { id } = useParams<ParamTypes>();
@@ -98,7 +99,11 @@ const Film: FC = () => {
           <p>loading</p>
         )}
       </Main>
-      <Modal />
+      <FilmModal
+        modalFrame={modalFrame}
+        setModalFrame={setModalFrame}
+        frame={frame}
+      />
     </Content>
   );
 };
