@@ -9,7 +9,7 @@ import { ParamTypes, FilmTypes, DirectTypes, FrameTypes } from "../types/film";
 import FestPoster from "../components/film_poster";
 import FilmInfo from "../components/film_info";
 import FilmFrames from "../components/film_frames";
-import { Content, Main } from "../style/film_style";
+import { Content, Main, Modal } from "../style/film_style";
 
 const Film: FC = () => {
   let { id } = useParams<ParamTypes>();
@@ -40,6 +40,13 @@ const Film: FC = () => {
   const [film, setFilm] = useState<FilmTypes | null>(null);
   const [director, setDirector] = useState<DirectTypes | null>(null);
   const [frame, setFrame] = useState<FrameTypes | null>(null);
+  const [modalFrame, setModalFrame] = useState<number | null>(null);
+  // if (frame) {
+  //   console.log(frame.frames[0].preview);
+  // }
+
+  console.log(modalFrame);
+
   console.log(state, "kk");
   useEffect(() => {
     setFilm(null);
@@ -82,11 +89,16 @@ const Film: FC = () => {
         )}
         <FilmInfo film={film} director={director} />
         {frame ? (
-          <FilmFrames frame={frame} respons1025={respons1025} />
+          <FilmFrames
+            frame={frame}
+            respons1025={respons1025}
+            setModalFrame={setModalFrame}
+          />
         ) : (
           <p>loading</p>
         )}
       </Main>
+      <Modal />
     </Content>
   );
 };

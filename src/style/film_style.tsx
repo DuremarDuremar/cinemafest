@@ -30,8 +30,9 @@ const linearGradientLeft = `linear-gradient(
 )`;
 
 export const Content = styled.div`
-  padding: 0 5px;
+  padding: 0 15px;
   color: #dfe4ea;
+  position: relative;
 `;
 
 export const Header = styled.div`
@@ -153,7 +154,7 @@ export const InfoDirector = styled.div`
     }
     &:after {
       content: "";
-      width: 250%;
+      width: 25vw;
       position: absolute;
       bottom: -30%;
       left: 8%;
@@ -213,7 +214,7 @@ export const Frames = styled.div<{ respons1025: boolean }>`
   }
   ::-webkit-scrollbar {
     width: 6px;
-    height: 6px;
+    height: 8px;
     background-color: #f9f9fd;
   }
   ::-webkit-scrollbar-thumb {
@@ -236,4 +237,15 @@ export const Exit = styled(Link)`
     margin: 0px auto;
     cursor: pointer;
   }
+`;
+
+export const Modal = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #2f3542;
+  opacity: 0;
+  z-index: -1;
 `;
