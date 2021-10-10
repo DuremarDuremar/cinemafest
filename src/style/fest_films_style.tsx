@@ -8,7 +8,7 @@ export const Content = styled.div<{
   grid-template-columns: ${({ respons950 }) =>
     respons950 ? "repeat(3, 1fr)" : "repeat(2, 1fr)"};
   grid-gap: 10px;
-  padding: 20px 5px 0;
+  padding: 20px 5px 15px;
 `;
 
 export const Item = styled.div<{

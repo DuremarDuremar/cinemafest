@@ -48,7 +48,7 @@ const Film: FC = () => {
 
   console.log(modalFrame);
 
-  console.log(state, "kk");
+  // console.log(state, "kk");
   useEffect(() => {
     setFilm(null);
     setDirector(null);
@@ -99,11 +99,13 @@ const Film: FC = () => {
           <p>loading</p>
         )}
       </Main>
-      <FilmModal
-        modalFrame={modalFrame}
-        setModalFrame={setModalFrame}
-        frame={frame}
-      />
+      {frame && modalFrame && (
+        <FilmModal
+          modalFrame={modalFrame}
+          setModalFrame={setModalFrame}
+          frame={frame}
+        />
+      )}
     </Content>
   );
 };
