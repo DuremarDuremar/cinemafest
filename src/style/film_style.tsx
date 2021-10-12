@@ -180,9 +180,10 @@ export const Frames = styled.div<{ respons1025: boolean }>`
   div {
     position: relative;
     background-color: black;
-
+    height: 300px;
+    display: flex;
     img {
-      display: block;
+      max-height: 100%;
       ${(props) =>
         props.respons1025 &&
         `

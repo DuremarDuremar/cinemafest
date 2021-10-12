@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { Modal, WrapperSlider } from "../style/film_modal_style";
+import { Modal, WrapperSlider, Arrow } from "../style/film_modal_style";
 import { FrameItemTypes, FrameTypes } from "../types/film";
 
 interface IProps {
@@ -9,8 +9,6 @@ interface IProps {
 }
 
 const FilmModal: FC<IProps> = ({ modalFrame, setModalFrame, frame }) => {
-  console.log(frame.frames);
-
   const arraySlider = [
     ...frame.frames.slice(modalFrame - 1, frame.frames.length),
     ...frame.frames.slice(0, modalFrame - 1),
@@ -22,10 +20,7 @@ const FilmModal: FC<IProps> = ({ modalFrame, setModalFrame, frame }) => {
         className="far fa-times-circle fa-4x"
         onClick={() => setModalFrame(null)}
       ></i>
-      <img
-        src={frame.frames[modalFrame - 1].preview}
-        alt={`${modalFrame - 1}`}
-      />
+
       <WrapperSlider {...settings}>
         {arraySlider.map((item: FrameItemTypes, index: number) => {
           return (
@@ -42,9 +37,21 @@ const FilmModal: FC<IProps> = ({ modalFrame, setModalFrame, frame }) => {
 export default FilmModal;
 
 const settings = {
-  dots: true,
+  className: "",
+  dots: false,
   infinite: true,
   speed: 500,
   slidesToShow: 1,
   slidesToScroll: 1,
+  adaptiveHeight: true,
+  nextArrow: (
+    <Arrow>
+      <i className="fas fa-arrow-circle-right fa-4x"></i>
+    </Arrow>
+  ),
+  prevArrow: (
+    <Arrow left>
+      <i className="fas fa-arrow-circle-left fa-4x"></i>
+    </Arrow>
+  ),
 };
