@@ -1,5 +1,10 @@
 import React, { FC } from "react";
-import { Modal, WrapperSlider, Arrow } from "../style/film_modal_style";
+import {
+  Modal,
+  Wrapper,
+  WrapperSlider,
+  Arrow,
+} from "../style/film_modal_style";
 import { FrameItemTypes, FrameTypes } from "../types/film";
 
 interface IProps {
@@ -15,21 +20,22 @@ const FilmModal: FC<IProps> = ({ modalFrame, setModalFrame, frame }) => {
   ];
 
   return (
-    <Modal modalFrame={modalFrame}>
+    <Modal modalFrame={modalFrame} onClick={() => setModalFrame(null)}>
       <i
         className="far fa-times-circle fa-4x"
         onClick={() => setModalFrame(null)}
       ></i>
-
-      <WrapperSlider {...settings}>
-        {arraySlider.map((item: FrameItemTypes, index: number) => {
-          return (
-            <div key={index}>
-              <img src={item.preview} alt={index.toString()} />
-            </div>
-          );
-        })}
-      </WrapperSlider>
+      <Wrapper onClick={(e) => e.stopPropagation()}>
+        <WrapperSlider {...settings}>
+          {arraySlider.map((item: FrameItemTypes, index: number) => {
+            return (
+              <div key={index} onClick={(e) => e.stopPropagation()}>
+                <img src={item.preview} alt={index.toString()} />
+              </div>
+            );
+          })}
+        </WrapperSlider>
+      </Wrapper>
     </Modal>
   );
 };

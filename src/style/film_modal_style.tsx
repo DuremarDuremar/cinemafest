@@ -13,26 +13,30 @@ export const Modal = styled.div<{ modalFrame: number | null }>`
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
   i {
     position: absolute;
     top: 5%;
     right: 5%;
   }
 `;
-
-export const WrapperSlider = styled(Slider)`
+export const Wrapper = styled.div`
   overflow: hidden;
   z-index: -1;
+`;
+export const WrapperSlider = styled(Slider)`
+  width: 100%;
+
+  overflow: hidden;
   .slick-slide {
-    background-color: black;
-    padding: 20px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
 
     img {
-      object-fit: contain;
       display: block;
+      margin: 0px auto;
+      width: 86%;
     }
   }
   .slick-track {
