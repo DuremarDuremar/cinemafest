@@ -41,8 +41,8 @@ export const Header = styled.div`
     background-color: #dfe4ea;
   }
 `;
-export const Main = styled.div<{ respons1025: boolean }>`
-  display: grid;
+export const Main = styled.div<{ respons1025: boolean; respons730: boolean }>`
+  display: ${(props) => (props.respons730 ? "grid" : "block")};
   grid-template-columns: ${(props) =>
     props.respons1025 ? "repeat(3, 1fr)" : "repeat(2, 1fr)"};
   grid-gap: 10px;
@@ -98,6 +98,7 @@ export const Info = styled.div`
   font-size: 13px;
 `;
 export const InfoFilm = styled.div`
+  padding: 0 30px;
   div:first-child {
     position: relative;
 

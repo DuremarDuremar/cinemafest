@@ -17,7 +17,7 @@ const Film: FC = () => {
 
   let arrayFilm = useMemo(() => Object.values(arrayLink).flat(1), []);
 
-  const { respons950, respons1025, respons520 } = useTypeSelector(
+  const { respons950, respons1025, respons520, respons730 } = useTypeSelector(
     (state) => state.respons
   );
 
@@ -37,18 +37,34 @@ const Film: FC = () => {
     [arrayFilm]
   );
 
+  const newFilm = (next: boolean) => {
+    const link = arrayFilm
+      .map((item: number[], index: number, array: number[][]) => {
+        if (state[0] === item[0] && state[1] === item[1]) {
+          return next ? array[index + 1] : array[index - 1];
+        } else {
+          return [];
+        }
+      })
+      .filter(Boolean)
+      .flat(1);
+    if (link[0]) {
+      return link[0].toString();
+    } else {
+      return state[0] === arrayFilm[0][0]
+        ? arrayFilm[arrayFilm.length - 1][0].toString()
+        : arrayFilm[0][0].toString();
+    }
+  }; // функция перебора массива
+
   const [state, setState] = useState<number[]>(renderId(id));
   const [film, setFilm] = useState<FilmTypes | null>(null);
   const [director, setDirector] = useState<DirectTypes | null>(null);
   const [frame, setFrame] = useState<FrameTypes | null>(null);
   const [modalFrame, setModalFrame] = useState<number | null>(null);
-  // if (frame) {
-  //   console.log(frame.frames[0].preview);
-  // }
 
   console.log(modalFrame);
 
-  // console.log(state, "kk");
   useEffect(() => {
     setFilm(null);
     setDirector(null);
@@ -82,13 +98,20 @@ const Film: FC = () => {
 
   return (
     <Content>
-      <Main respons1025={respons1025}>
+      <Main respons1025={respons1025} respons730={respons730}>
         {film ? (
-          <FestPoster state={state} film={film} arrayFilm={arrayFilm} />
+          respons730 ? (
+            <FestPoster newFilm={newFilm} film={film} />
+          ) : null
         ) : (
           <p>loading</p>
         )}
-        <FilmInfo film={film} director={director} />
+        <FilmInfo
+          film={film}
+          director={director}
+          respons730={respons730}
+          newFilm={newFilm}
+        />
         {frame ? (
           <FilmFrames
             frame={frame}

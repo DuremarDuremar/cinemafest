@@ -7,9 +7,11 @@ import logo from "../assets/logo.png";
 interface IProps {
   director: DirectTypes | null;
   film: FilmTypes | null;
+  newFilm: (next: boolean) => string;
+  respons730: boolean;
 }
 
-const FilmInfo: FC<IProps> = ({ film, director }) => {
+const FilmInfo: FC<IProps> = ({ film, director, respons730, newFilm }) => {
   return (
     <Info>
       <Exit to="/">
@@ -30,7 +32,7 @@ const FilmInfo: FC<IProps> = ({ film, director }) => {
           </div>
         </InfoFilm>
       ) : (
-        <p>loadinge</p>
+        <p>loading</p>
       )}
       {director ? (
         <InfoDirector>

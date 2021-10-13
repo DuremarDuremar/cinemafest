@@ -13,7 +13,7 @@ export const Modal = styled.div<{ modalFrame: number | null }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+
   i {
     position: absolute;
     top: 5%;
@@ -31,12 +31,12 @@ export const WrapperSlider = styled(Slider)`
   .slick-slide {
     width: 100%;
     height: 100%;
-    border: 1px solid black;
+    /* border: 1px solid black; */
 
     img {
       display: block;
       margin: 0px auto;
-      width: 86%;
+      width: 70%;
     }
   }
   .slick-track {
