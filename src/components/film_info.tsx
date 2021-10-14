@@ -1,6 +1,12 @@
 import React, { FC } from "react";
 
-import { Info, Exit, InfoFilm, InfoDirector } from "../style/film_style";
+import {
+  Info,
+  Exit,
+  InfoFilm,
+  InfoDirector,
+  Arrow,
+} from "../style/film_info_style";
 import { FilmTypes, DirectTypes } from "../types/film";
 import logo from "../assets/logo.png";
 
@@ -39,6 +45,16 @@ const FilmInfo: FC<IProps> = ({ film, director, respons730, newFilm }) => {
       )}
       {director ? (
         <InfoDirector>
+          {!respons730 && (
+            <>
+              <Arrow to={() => newFilm(false)}>
+                <i className="fas fa-arrow-alt-circle-left fa-2x"></i>
+              </Arrow>
+              <Arrow to={() => newFilm(true)}>
+                <i className="fas fa-arrow-alt-circle-right fa-2x"></i>
+              </Arrow>
+            </>
+          )}
           <img src={director[0].posterUrl} alt={director[0].nameEn} />
           <div>
             <p>{director[0].nameRu}</p>

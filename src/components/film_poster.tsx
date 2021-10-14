@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import { Image, LinkImage } from "../style/film_style";
+import { Image, LinkImage } from "../style/film_poster_style";
 import { FilmTypes } from "../types/film";
 
 interface IProps {
