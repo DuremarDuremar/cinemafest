@@ -94,7 +94,14 @@ export const LinkImage = styled(Link)<{ next?: string }>`
   }
 `;
 
-export const Info = styled.div`
+export const Info = styled.div<{
+  respons730: boolean;
+  backgroundPoster: string | null;
+}>`
+  background-repeat: no-repeat;
+  background-image: linear-gradient(to right, rgb(47, 53, 66, 0.8) 0 100%),
+    url(${(props) => props.backgroundPoster});
+  background-size: cover;
   font-size: 13px;
 `;
 export const InfoFilm = styled.div`

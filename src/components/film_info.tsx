@@ -13,7 +13,10 @@ interface IProps {
 
 const FilmInfo: FC<IProps> = ({ film, director, respons730, newFilm }) => {
   return (
-    <Info>
+    <Info
+      respons730={respons730}
+      backgroundPoster={film && !respons730 ? film.posterUrlPreview : null}
+    >
       <Exit to="/">
         <img src={logo} alt="logo" />
       </Exit>

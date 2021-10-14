@@ -31,12 +31,12 @@ export const WrapperSlider = styled(Slider)`
   .slick-slide {
     width: 100%;
     height: 100%;
-    /* border: 1px solid black; */
 
     img {
       display: block;
       margin: 0px auto;
       width: 70%;
+      max-height: 90vh;
     }
   }
   .slick-track {
