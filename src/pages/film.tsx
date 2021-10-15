@@ -127,6 +127,7 @@ const Film: FC = () => {
           modalFrame={modalFrame}
           setModalFrame={setModalFrame}
           frame={frame}
+          respons730={respons730}
         />
       )}
     </Content>

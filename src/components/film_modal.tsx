@@ -11,9 +11,36 @@ interface IProps {
   frame: FrameTypes;
   modalFrame: number;
   setModalFrame: React.Dispatch<React.SetStateAction<number | null>>;
+  respons730: boolean;
 }
 
-const FilmModal: FC<IProps> = ({ modalFrame, setModalFrame, frame }) => {
+const FilmModal: FC<IProps> = ({
+  modalFrame,
+  setModalFrame,
+  frame,
+  respons730,
+}) => {
+  const settings = {
+    className: "",
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    adaptiveHeight: true,
+    arrows: respons730 ? true : false,
+    nextArrow: (
+      <Arrow>
+        <i className="fas fa-arrow-circle-right fa-2x"></i>
+      </Arrow>
+    ),
+    prevArrow: (
+      <Arrow left>
+        <i className="fas fa-arrow-circle-left fa-2x"></i>
+      </Arrow>
+    ),
+  };
+
   const arraySlider = [
     ...frame.frames.slice(modalFrame - 1, frame.frames.length),
     ...frame.frames.slice(0, modalFrame - 1),
@@ -41,23 +68,3 @@ const FilmModal: FC<IProps> = ({ modalFrame, setModalFrame, frame }) => {
 };
 
 export default FilmModal;
-
-const settings = {
-  className: "",
-  dots: false,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  adaptiveHeight: true,
-  nextArrow: (
-    <Arrow>
-      <i className="fas fa-arrow-circle-right fa-4x"></i>
-    </Arrow>
-  ),
-  prevArrow: (
-    <Arrow left>
-      <i className="fas fa-arrow-circle-left fa-4x"></i>
-    </Arrow>
-  ),
-};

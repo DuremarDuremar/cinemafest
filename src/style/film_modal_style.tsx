@@ -15,6 +15,7 @@ export const Modal = styled.div<{ modalFrame: number | null }>`
   align-items: center;
 
   i {
+    cursor: pointer;
     position: absolute;
     top: 5%;
     right: 5%;
@@ -35,7 +36,8 @@ export const WrapperSlider = styled(Slider)`
     img {
       display: block;
       margin: 0px auto;
-      width: 70%;
+      width: 100%;
+      max-width: 80vw;
       max-height: 90vh;
     }
   }
@@ -47,10 +49,12 @@ export const WrapperSlider = styled(Slider)`
 `;
 
 export const Arrow = styled.div<{ left?: boolean }>`
+  display: block;
   width: 40px;
   height: 40px;
   position: absolute;
-  left: ${(props) => (props.left ? "4%" : "94.5%")};
+  left: ${(props) => props.left && "2%"};
+  right: ${(props) => !props.left && "2%"};
   top: 45%;
   cursor: pointer;
   z-index: 1;

@@ -1,6 +1,7 @@
 import React, { FC, useState, useEffect, useMemo, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { Transition } from "react-transition-group";
+import { animateScroll } from "react-scroll";
 
 import { useTypeSelector } from "../hooks/useTypeSelector";
 import { fetchMenu } from "../reducer/actions/menuA";
@@ -60,8 +61,13 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
       : date;
   }, [choiceFest]);
 
-  // console.log(yearFest);
-  // console.log(choiceYear);
+  const renderFilms = (item: number) => {
+    setTimeout(() => {
+      yearFest[item] === choiceYear
+        ? setChoiceYear("")
+        : setChoiceYear(yearFest[item]);
+    }, 100);
+  };
 
   const render = () => {
     return (
@@ -98,11 +104,10 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
                       background={data[item].posterUrl}
                       choice={yearFest[item] === choiceYear ? true : false}
                       choiceActive={choiceYear.length ? true : false}
-                      onClick={() =>
-                        yearFest[item] === choiceYear
-                          ? setChoiceYear("")
-                          : setChoiceYear(yearFest[item])
-                      }
+                      onClick={() => {
+                        animateScroll.scrollToTop();
+                        renderFilms(item);
+                      }}
                     >
                       <p>
                         {yearFest[item] &&
