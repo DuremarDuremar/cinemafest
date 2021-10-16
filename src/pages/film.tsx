@@ -11,6 +11,7 @@ import FilmInfo from "../components/film_info";
 import FilmFrames from "../components/film_frames";
 import FilmModal from "../components/film_modal";
 import { Content, Main } from "../style/film_style";
+import Spinner from "../components/spinner";
 
 const Film: FC = () => {
   let { id } = useParams<ParamTypes>();
@@ -63,7 +64,7 @@ const Film: FC = () => {
   const [frame, setFrame] = useState<FrameTypes | null>(null);
   const [modalFrame, setModalFrame] = useState<number | null>(null);
 
-  console.log(modalFrame);
+  // console.log(modalFrame);
 
   useEffect(() => {
     setFilm(null);
@@ -104,7 +105,7 @@ const Film: FC = () => {
             <FestPoster newFilm={newFilm} film={film} />
           ) : null
         ) : (
-          <p>loading</p>
+          <Spinner />
         )}
         <FilmInfo
           film={film}
@@ -119,7 +120,7 @@ const Film: FC = () => {
             setModalFrame={setModalFrame}
           />
         ) : (
-          <p>loading</p>
+          <Spinner />
         )}
       </Main>
       {frame && modalFrame && (

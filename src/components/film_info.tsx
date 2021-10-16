@@ -9,6 +9,7 @@ import {
 } from "../style/film_info_style";
 import { FilmTypes, DirectTypes } from "../types/film";
 import logo from "../assets/logo.png";
+import Spinner from "./spinner";
 
 interface IProps {
   director: DirectTypes | null;
@@ -41,7 +42,7 @@ const FilmInfo: FC<IProps> = ({ film, director, respons730, newFilm }) => {
           </div>
         </InfoFilm>
       ) : (
-        <p>loading</p>
+        <Spinner />
       )}
       {director ? (
         <InfoDirector>
@@ -62,7 +63,7 @@ const FilmInfo: FC<IProps> = ({ film, director, respons730, newFilm }) => {
           </div>
         </InfoDirector>
       ) : (
-        <p>loading</p>
+        <Spinner />
       )}
     </Info>
   );

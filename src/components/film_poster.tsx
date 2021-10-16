@@ -13,10 +13,10 @@ const FestPoster: FC<IProps> = ({ newFilm, film }) => {
     <Image>
       <img src={film.posterUrlPreview} alt={film.nameEn} />
       <LinkImage to={() => newFilm(true)} className="link" next="next">
-        <i className="fas fa-arrow-right fa-4x" />
+        <i className="fas fa-arrow-right fa-2x" />
       </LinkImage>
       <LinkImage to={() => newFilm(false)} className="link">
-        <i className="fas fa-arrow-right fa-4x" />
+        <i className="fas fa-arrow-right fa-2x" />
       </LinkImage>
     </Image>
   );

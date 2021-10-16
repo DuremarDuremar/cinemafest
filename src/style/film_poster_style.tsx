@@ -15,7 +15,8 @@ export const Image = styled.div`
     cursor: pointer;
 
     :hover ~ .link {
-      opacity: 1;
+      color: black;
+      background-color: #dfe4ea;
     }
   }
 `;
@@ -34,15 +35,11 @@ export const LinkImage = styled(Link)<{ next?: string }>`
     !props.next &&
     `
         top:0;
-        left: 12%;     
+        left: 10%;     
   `};
-  opacity: 0;
-  box-shadow: 5px 5px 5px 5px #bdc3c7;
+  cursor: pointer;
+
+  box-shadow: 5px 0 5px 0 #bdc3c7;
   color: #dfe4ea;
   background-color: black;
-
-  :hover {
-    opacity: 1;
-    cursor: pointer;
-  }
 `;

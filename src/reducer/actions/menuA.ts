@@ -29,7 +29,7 @@ export const fetchMenu = (choiceFest: string) => {
     try {
       dispatch({ type: DefaultActionTypes.FETCH_DEFAULT });
 
-      const resArray = foo.map((item, index) => {
+      const resArray = foo.map((item: number) => {
         const res = axios
           .get(`https://kinopoiskapiunofficial.tech/api/v2.1/films/${item}`, {
             method: "GET",
@@ -45,6 +45,7 @@ export const fetchMenu = (choiceFest: string) => {
             //   const arr = bar[index].filter((item) => item[0] !== err);
             //   return arr[0][0];
             // };
+
             return rej;
           });
 

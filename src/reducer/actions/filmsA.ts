@@ -12,7 +12,7 @@ export const fetchFilms = (linkFest: string, number: number) => {
   return async (dispatch: Dispatch<DefaultAction>) => {
     try {
       dispatch({ type: DefaultActionTypes.FETCH_DEFAULT_FILMS });
-      const listRes = await foo[number].map((item: any) => {
+      const listRes = foo[number].map((item: any) => {
         const res = axios.get(
           `https://kinopoiskapiunofficial.tech/api/v2.1/films/${item[0]}`,
           {

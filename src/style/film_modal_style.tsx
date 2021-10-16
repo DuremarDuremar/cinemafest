@@ -39,6 +39,7 @@ export const WrapperSlider = styled(Slider)`
       width: 100%;
       max-width: 80vw;
       max-height: 90vh;
+      object-fit: contain;
     }
   }
   .slick-track {

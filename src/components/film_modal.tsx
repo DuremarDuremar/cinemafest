@@ -46,6 +46,8 @@ const FilmModal: FC<IProps> = ({
     ...frame.frames.slice(0, modalFrame - 1),
   ];
 
+  // console.log(arraySlider, "arraySlider");
+
   return (
     <Modal modalFrame={modalFrame} onClick={() => setModalFrame(null)}>
       <i
@@ -55,8 +57,10 @@ const FilmModal: FC<IProps> = ({
       <Wrapper onClick={(e) => e.stopPropagation()}>
         <WrapperSlider {...settings}>
           {arraySlider.map((item: FrameItemTypes, index: number) => {
+            console.log(item);
+
             return (
-              <div key={index} onClick={(e) => e.stopPropagation()}>
+              <div key={index}>
                 <img src={item.preview} alt={index.toString()} />
               </div>
             );
