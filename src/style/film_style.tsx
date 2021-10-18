@@ -53,6 +53,8 @@ export const Frames = styled.div<{ respons1025: boolean }>`
   max-height: 580px;
   overflow: auto;
   border-top: 6px solid black;
+  cursor: pointer;
+
   ${(props) =>
     !props.respons1025 &&
     `
@@ -66,6 +68,7 @@ export const Frames = styled.div<{ respons1025: boolean }>`
     background-color: black;
     height: 300px;
     display: flex;
+
     img {
       max-height: 100%;
       ${(props) =>

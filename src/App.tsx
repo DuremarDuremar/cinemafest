@@ -1,10 +1,8 @@
 import React, { FC, useEffect } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 
-import Fest from "./pages/fest";
-import Directors from "./pages/directors";
 import {
   respons950,
   respons730,
@@ -12,7 +10,7 @@ import {
   respons1025,
 } from "./reducer/actions/responsA";
 import { Global, Content } from "./style/app_style";
-import Film from "./pages/film";
+import Pages from "./pages/pages";
 
 const App: FC = () => {
   const dispatch = useDispatch();
@@ -32,11 +30,7 @@ const App: FC = () => {
     <BrowserRouter>
       <Global />
       <Content>
-        <Switch>
-          <Route path="/" component={Fest} exact />
-          <Route path="/direct" component={Directors} />
-          <Route path="/:id" component={Film} />
-        </Switch>
+        <Pages />
       </Content>
     </BrowserRouter>
   );

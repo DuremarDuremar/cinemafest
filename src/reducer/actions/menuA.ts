@@ -21,8 +21,6 @@ export const fetchMenu = (choiceFest: string) => {
       .filter((item) => arrayLink[item])
       .map((item) => arrayLink[item]);
 
-    console.log(bar);
-
     const foo = bar.map((item) => {
       return shuffle(item)[0][0];
     });

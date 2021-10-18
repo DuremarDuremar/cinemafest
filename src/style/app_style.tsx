@@ -59,7 +59,7 @@ export const Content = styled.div`
   min-height: 100vh;
   margin: 0px auto;
   font-family: "Yatra One", cursive;
-  /* background-color: #2f3542; */
+  position: relative;
 `;
 
 export const rotate = (n: any) => keyframes`
