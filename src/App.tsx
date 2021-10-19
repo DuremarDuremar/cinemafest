@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from "react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useMediaQuery } from "react-responsive";
 
@@ -11,6 +11,8 @@ import {
 } from "./reducer/actions/responsA";
 import { Global, Content } from "./style/app_style";
 import Pages from "./pages/pages";
+import Fest from "./pages/fest";
+import Directors from "./pages/directors";
 
 const App: FC = () => {
   const dispatch = useDispatch();
@@ -30,7 +32,11 @@ const App: FC = () => {
     <BrowserRouter>
       <Global />
       <Content>
-        <Pages />
+        <Switch>
+          <Route path="/" component={Fest} exact />
+          <Route path="/direct" component={Directors} />
+          <Pages />
+        </Switch>
       </Content>
     </BrowserRouter>
   );

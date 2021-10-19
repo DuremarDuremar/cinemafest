@@ -3,8 +3,7 @@ import { Route, Switch, useLocation } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 import Film from "./film";
-import Fest from "./fest";
-import Directors from "./directors";
+
 import "../style/styles.css";
 const Pages = () => {
   const location = useLocation();
@@ -12,22 +11,22 @@ const Pages = () => {
   const nodeRef = useRef(null);
 
   return (
-    <Switch>
-      <Route path="/" component={Fest} exact />
-      <Route path="/direct" component={Directors} />
+    <>
       <TransitionGroup>
         <CSSTransition
-          // nodeRef={nodeRef}
+          nodeRef={nodeRef}
           key={location.key}
           classNames="page"
-          timeout={1200}
+          timeout={700}
         >
-          <Switch location={location}>
-            <Route path="/:id" component={Film} />
-          </Switch>
+          <div ref={nodeRef}>
+            <Switch location={location}>
+              <Route path="/:id" component={Film} />
+            </Switch>
+          </div>
         </CSSTransition>
       </TransitionGroup>
-    </Switch>
+    </>
   );
 };
 
