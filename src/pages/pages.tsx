@@ -4,7 +4,8 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 import Film from "./film";
 
-import "../style/styles.css";
+import "../style/stylesTransition.css";
+
 const Pages = () => {
   const location = useLocation();
 

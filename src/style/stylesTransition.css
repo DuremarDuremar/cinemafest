@@ -2,15 +2,15 @@
   position: absolute;
 }
 
-.page-enter {
-}
+/* .page-enter {
+} */
 
 .page-enter-active {
   animation: fade-in 1s forwards;
 }
 
-.page-exit {
-}
+/* .page-exit {
+} */
 
 .page-exit-active {
   animation: fade-out 0.5s forwards;

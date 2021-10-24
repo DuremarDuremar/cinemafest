@@ -5,6 +5,7 @@ import {
   Exit,
   InfoFilm,
   InfoDirector,
+  Wrapper,
   Arrow,
 } from "../style/film_info_style";
 import { FilmTypes, DirectTypes } from "../types/film";
@@ -19,6 +20,8 @@ interface IProps {
 }
 
 const FilmInfo: FC<IProps> = ({ film, director, respons730, newFilm }) => {
+  console.log(director);
+
   return (
     <Info
       respons730={respons730}
@@ -56,11 +59,22 @@ const FilmInfo: FC<IProps> = ({ film, director, respons730, newFilm }) => {
               </Arrow>
             </>
           )}
-          <img src={director[0].posterUrl} alt={director[0].nameEn} />
-          <div>
-            <p>{director[0].nameRu}</p>
-            <p>{director[0].nameEn}</p>
-          </div>
+          <Wrapper>
+            <img src={director[0].posterUrl} alt={director[0].nameEn} />
+            <div>
+              <p>{director[0].nameRu}</p>
+              <p>{director[0].nameEn}</p>
+            </div>
+          </Wrapper>
+          {director[1] && (
+            <Wrapper>
+              <img src={director[1].posterUrl} alt={director[1].nameEn} />
+              <div>
+                <p>{director[1].nameRu}</p>
+                <p>{director[1].nameEn}</p>
+              </div>
+            </Wrapper>
+          )}
         </InfoDirector>
       ) : (
         <Spinner />

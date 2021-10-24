@@ -18,9 +18,7 @@ const Film: FC = () => {
 
   let arrayFilm = useMemo(() => Object.values(arrayLink).flat(1), []);
 
-  const { respons950, respons1025, respons520, respons730 } = useTypeSelector(
-    (state) => state.respons
-  );
+  const { respons1025, respons730 } = useTypeSelector((state) => state.respons);
 
   const renderId = useCallback(
     (id: string) => {
@@ -63,8 +61,6 @@ const Film: FC = () => {
   const [director, setDirector] = useState<DirectTypes | null>(null);
   const [frame, setFrame] = useState<FrameTypes | null>(null);
   const [modalFrame, setModalFrame] = useState<number | null>(null);
-
-  // console.log(modalFrame);
 
   useEffect(() => {
     setFilm(null);

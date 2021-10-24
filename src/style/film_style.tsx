@@ -66,11 +66,11 @@ export const Frames = styled.div<{ respons1025: boolean }>`
   div {
     position: relative;
     background-color: black;
-    height: 300px;
     display: flex;
 
     img {
       max-height: 100%;
+      object-fit: contain;
       ${(props) =>
         props.respons1025 &&
         `

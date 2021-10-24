@@ -57,6 +57,7 @@ export const InfoDirector = styled.div`
   i {
     position: absolute;
     cursor: pointer;
+    z-index: 1;
   }
 
   .fa-arrow-alt-circle-left {
@@ -65,7 +66,10 @@ export const InfoDirector = styled.div`
   .fa-arrow-alt-circle-right {
     right: 5%;
   }
+`;
 
+export const Wrapper = styled.div`
+  position: relative;
   img {
     display: block;
     margin: 0px auto;
