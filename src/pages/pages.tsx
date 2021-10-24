@@ -17,7 +17,9 @@ const Pages = () => {
           nodeRef={nodeRef}
           key={location.key}
           classNames="page"
-          timeout={700}
+          in
+          timeout={{ enter: 800, exit: 100 }}
+          unmountOnExit
         >
           <div ref={nodeRef}>
             <Switch location={location}>
