@@ -5,13 +5,12 @@ import { Frames } from "../style/film_style";
 
 interface IProps {
   frame: FrameTypes;
-  respons1025: boolean;
   setModalFrame: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
-const FilmFrames: FC<IProps> = ({ frame, respons1025, setModalFrame }) => {
+const FilmFrames: FC<IProps> = ({ frame, setModalFrame }) => {
   return (
-    <Frames respons1025={respons1025}>
+    <Frames>
       {frame.frames.slice(0, 8).map((item: FrameItemTypes, index: number) => {
         return (
           <div key={index} onClick={() => setModalFrame(index + 1)}>

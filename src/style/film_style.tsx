@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { respon } from "../variables";
 
 const linearGradientTop = `linear-gradient(
   to top,
@@ -40,64 +41,92 @@ export const Header = styled.div`
     background-color: #dfe4ea;
   }
 `;
-export const Main = styled.div<{ respons1025: boolean; respons730: boolean }>`
-  display: ${(props) => (props.respons730 ? "grid" : "block")};
-  grid-template-columns: ${(props) =>
-    props.respons1025 ? "repeat(3, 1fr)" : "repeat(2, 1fr)"};
+export const Main = styled.div`
+  @media ${respon.smMin} {
+    display: grid;
+  }
+  @media ${respon.smMax} {
+    display: block;
+  }
+
+  @media ${respon.lgMin} {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media ${respon.lgMax} {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   grid-gap: 10px;
   padding-top: 35px;
 `;
 
-export const Frames = styled.div<{ respons1025: boolean }>`
+export const Frames = styled.div`
   margin: 0px auto;
   max-height: 580px;
   overflow: auto;
   border-top: 6px solid black;
   cursor: pointer;
 
-  ${(props) =>
-    !props.respons1025 &&
-    `
-    grid-column: span 2 / auto; 
+  @media ${respon.lgMax} {
+    grid-column: span 2 / auto;
     margin: 30px auto 0;
-    display:flex;
+    display: flex;
     width: calc(100% - 60px);
-  `};
+  }
   div {
     position: relative;
     background-color: black;
     display: flex;
 
     img {
-      max-height: 100%;
+      max-height: 270px;
       object-fit: contain;
-      ${(props) =>
-        props.respons1025 &&
-        `
-       max-width: 100%;
-      
-    `};
+      @media ${respon.lgMin} {
+        max-width: 100%;
+        margin: 0px auto;
+      }
     }
     &:after {
       content: "";
-      width: ${(props) => (props.respons1025 ? "25px" : "100%")};
-      height: ${(props) => (props.respons1025 ? "100%" : "15px")};
+      @media ${respon.lgMin} {
+        width: 25px;
+        height: 100%;
+      }
+      @media ${respon.lgMax} {
+        width: 100%;
+        height: 15px;
+      }
       position: absolute;
       top: 0;
       display: block;
-      background: ${(props) =>
-        props.respons1025 ? linearGradientTop : linearGradientLeft};
+      @media ${respon.lgMin} {
+        background: ${linearGradientTop};
+      }
+      @media ${respon.lgMax} {
+        background: ${linearGradientLeft};
+      }
     }
     &:before {
       content: "";
-      width: ${(props) => (props.respons1025 ? "25px" : "100%")};
-      height: ${(props) => (props.respons1025 ? "100%" : "15px")};
+      @media ${respon.lgMin} {
+        width: 25px;
+        height: 100%;
+      }
+      @media ${respon.lgMax} {
+        width: 100%;
+        height: 15px;
+      }
+
       position: absolute;
       bottom: 0;
       right: 0;
       display: block;
-      background: ${(props) =>
-        props.respons1025 ? linearGradientTop : linearGradientLeft};
+      @media ${respon.lgMin} {
+        background: ${linearGradientTop};
+      }
+      @media ${respon.lgMax} {
+        background: ${linearGradientLeft};
+      }
     }
   }
   ::-webkit-scrollbar {

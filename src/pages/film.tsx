@@ -95,7 +95,7 @@ const Film: FC = () => {
 
   return (
     <Content>
-      <Main respons1025={respons1025} respons730={respons730}>
+      <Main>
         {film ? (
           respons730 ? (
             <FestPoster newFilm={newFilm} film={film} />
@@ -110,11 +110,7 @@ const Film: FC = () => {
           newFilm={newFilm}
         />
         {frame ? (
-          <FilmFrames
-            frame={frame}
-            respons1025={respons1025}
-            setModalFrame={setModalFrame}
-          />
+          <FilmFrames frame={frame} setModalFrame={setModalFrame} />
         ) : (
           <Spinner />
         )}

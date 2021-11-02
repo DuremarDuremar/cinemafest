@@ -20,8 +20,6 @@ interface IProps {
 }
 
 const FilmInfo: FC<IProps> = ({ film, director, respons730, newFilm }) => {
-  console.log(director);
-
   return (
     <Info
       respons730={respons730}

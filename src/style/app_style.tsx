@@ -52,6 +52,7 @@ section::-webkit-scrollbar {
 section::-webkit-scrollbar-thumb {
     background-color: #0F2027;
 }
+
 `;
 
 export const Content = styled.div`
