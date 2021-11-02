@@ -42,16 +42,12 @@ export const Header = styled.div`
   }
 `;
 export const Main = styled.div`
-  @media ${respon.smMin} {
-    display: grid;
-  }
+  display: grid;
   @media ${respon.smMax} {
     display: block;
   }
 
-  @media ${respon.lgMin} {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  grid-template-columns: repeat(3, 1fr);
   @media ${respon.lgMax} {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -88,10 +84,8 @@ export const Frames = styled.div`
     }
     &:after {
       content: "";
-      @media ${respon.lgMin} {
-        width: 25px;
-        height: 100%;
-      }
+      width: 25px;
+      height: 100%;
       @media ${respon.lgMax} {
         width: 100%;
         height: 15px;
@@ -99,19 +93,15 @@ export const Frames = styled.div`
       position: absolute;
       top: 0;
       display: block;
-      @media ${respon.lgMin} {
-        background: ${linearGradientTop};
-      }
+      background: ${linearGradientTop};
       @media ${respon.lgMax} {
         background: ${linearGradientLeft};
       }
     }
     &:before {
       content: "";
-      @media ${respon.lgMin} {
-        width: 25px;
-        height: 100%;
-      }
+      width: 25px;
+      height: 100%;
       @media ${respon.lgMax} {
         width: 100%;
         height: 15px;
@@ -121,9 +111,7 @@ export const Frames = styled.div`
       bottom: 0;
       right: 0;
       display: block;
-      @media ${respon.lgMin} {
-        background: ${linearGradientTop};
-      }
+      background: ${linearGradientTop};
       @media ${respon.lgMax} {
         background: ${linearGradientLeft};
       }

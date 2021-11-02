@@ -1,21 +1,25 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const Content = styled.div<{
-  respons950: boolean;
-}>`
+import { respon } from "../variables";
+
+export const Content = styled.div`
   display: grid;
-  grid-template-columns: ${({ respons950 }) =>
-    respons950 ? "repeat(3, 1fr)" : "repeat(2, 1fr)"};
+  grid-template-columns: repeat(3, 1fr);
+  @media ${respon.mdMax} {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   grid-gap: 10px;
   padding: 20px 5px 15px;
 `;
 
-export const Item = styled.div<{
-  respons950: boolean;
-}>`
+export const Item = styled.div`
   margin: 0px auto;
-  background-color: ${({ respons950 }) => (respons950 ? "#2f3542" : "black")};
+  background-color: #2f3542;
+  @media ${respon.mdMax} {
+    background-color: black;
+  }
   max-width: 300px;
   width: 100%;
 `;

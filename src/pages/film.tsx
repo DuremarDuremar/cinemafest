@@ -18,7 +18,7 @@ const Film: FC = () => {
 
   let arrayFilm = useMemo(() => Object.values(arrayLink).flat(1), []);
 
-  const { respons1025, respons730 } = useTypeSelector((state) => state.respons);
+  const { respons730 } = useTypeSelector((state) => state.respons);
 
   const renderId = useCallback(
     (id: string) => {

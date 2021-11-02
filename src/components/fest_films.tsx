@@ -20,12 +20,9 @@ const FestFilms: FC<IProps> = ({ linkFest, choiceFest }) => {
   const { data } = useTypeSelector((state) => state.films);
   const { respons950, respons730 } = useTypeSelector((state) => state.respons);
 
-  const { ref, inView, entry } = useInView({
+  const { ref, inView } = useInView({
     threshold: 0,
   });
-
-  // console.log(inView);
-  // console.log(entry?.target.id);
 
   useEffect(() => {
     setTimeout(() => {
@@ -43,13 +40,12 @@ const FestFilms: FC<IProps> = ({ linkFest, choiceFest }) => {
 
   const render = () => {
     return (
-      <Content respons950={respons950}>
+      <Content>
         {data.map((item, index) => (
           <Item
             key={index}
             ref={index + 1 === data.length ? ref : null}
             id={item.filmId}
-            respons950={respons950}
           >
             {item.filmId ? (
               <>
