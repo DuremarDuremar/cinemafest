@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { useTypeSelector } from "../hooks/useTypeSelector";
 
 import Film from "./film";
 
@@ -11,6 +12,8 @@ const Pages = () => {
 
   const nodeRef = useRef(null);
 
+  const { newPage } = useTypeSelector((state) => state.transition);
+
   return (
     <>
       <TransitionGroup>
@@ -19,7 +22,7 @@ const Pages = () => {
           key={location.key}
           classNames="page"
           in
-          timeout={{ enter: 800, exit: 100 }}
+          timeout={newPage ? { enter: 800, exit: 0 } : { enter: 0, exit: 0 }}
           unmountOnExit
         >
           <div ref={nodeRef}>

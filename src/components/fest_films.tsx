@@ -18,7 +18,7 @@ const FestFilms: FC<IProps> = ({ linkFest, choiceFest }) => {
   const dispatch = useDispatch();
 
   const { data } = useTypeSelector((state) => state.films);
-  const { respons950, respons730 } = useTypeSelector((state) => state.respons);
+  const { respons730 } = useTypeSelector((state) => state.respons);
 
   const { ref, inView } = useInView({
     threshold: 0,

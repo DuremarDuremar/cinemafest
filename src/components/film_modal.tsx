@@ -57,7 +57,7 @@ const FilmModal: FC<IProps> = ({
       <Wrapper onClick={(e) => e.stopPropagation()}>
         <WrapperSlider {...settings}>
           {arraySlider.map((item: FrameItemTypes, index: number) => {
-            console.log(item);
+            // console.log(item);
 
             return (
               <div key={index}>
