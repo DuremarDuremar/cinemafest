@@ -20,9 +20,9 @@ const Pages = () => {
         <CSSTransition
           nodeRef={nodeRef}
           key={location.key}
-          classNames="page"
+          classNames={newPage ? "page" : "page2"}
           in
-          timeout={newPage ? { enter: 800, exit: 0 } : { enter: 0, exit: 0 }}
+          timeout={{ enter: 800, exit: 0 }}
           unmountOnExit
         >
           <div ref={nodeRef}>
