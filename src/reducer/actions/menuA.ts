@@ -5,16 +5,7 @@ import chunk from "lodash.chunk";
 import round from "lodash.round";
 
 import { DefaultActionTypes, DefaultAction } from "../../types/data";
-import { arrayLink, date } from "../arrayLink";
-
-const rej = {
-  data: {
-    data: {
-      posterUrl:
-        "https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg",
-    },
-  },
-};
+import { arrayLink, date, rej } from "../arrayLink";
 
 const choice = (choiceFest: string) => {
   const bar = date
@@ -25,7 +16,7 @@ const choice = (choiceFest: string) => {
   const foo = bar.map((item) => {
     return shuffle(item)[0][0];
   });
-  console.log(foo);
+
   return foo;
 };
 
@@ -39,7 +30,7 @@ export const fetchMenu = (choiceFest: string) => {
         round(choice(choiceFest).length / 2)
       );
 
-      const resArray = arr[0].map((item: number) => {
+      const resArray = choice(choiceFest).map((item: number, index: number) => {
         const res = axios
           .get(`https://kinopoiskapiunofficial.tech/api/v2.1/films/${item}`, {
             method: "GET",
@@ -52,37 +43,19 @@ export const fetchMenu = (choiceFest: string) => {
             return res;
           })
           .catch((error) => {
-            return rej;
+            console.log(choiceFest, index);
+            return rej(choiceFest, index);
           });
 
         return res;
       });
 
-      const resArray2 = arr[1].map((item: number) => {
-        const res = axios
-          .get(`https://kinopoiskapiunofficial.tech/api/v2.1/films/${item}`, {
-            method: "GET",
-            headers: {
-              "X-API-KEY": "3624a818-0f9b-4117-91dd-3f6624d9d171",
-              "Content-Type": "application/json",
-            },
-          })
-          .then((res) => {
-            return res;
-          })
-          .catch((error) => {
-            return rej;
-          });
-
-        return res;
-      });
+      console.log(choiceFest);
 
       dispatch({
         type: DefaultActionTypes.FETCH_DEFAULT_SUCCESS,
-        payload: await Promise.all([...resArray, ...resArray2]).then(function (
-          values
-        ) {
-          return values.map((item) => item.data.data);
+        payload: await Promise.all(resArray).then(function (values) {
+          return values.map((item: any) => item.data.data);
         }),
       });
     } catch (e) {

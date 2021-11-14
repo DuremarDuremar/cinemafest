@@ -398,3 +398,46 @@ export const date = [
   "2000s",
   "2010s",
 ];
+
+export const rej = (choiceFest: string, index: number) => {
+  let link = "https://kinopoiskapiunofficial.tech/images/posters/kp/7730.jpg";
+
+  switch (choiceFest && index) {
+    case "Cannes" && 0:
+      link = "https://kinopoiskapiunofficial.tech/images/posters/kp/7731.jpg";
+      break;
+    case "Cannes" && 1:
+      link = "https://kinopoiskapiunofficial.tech/images/posters/kp/79502.jpg";
+      break;
+
+    case "Cannes" && 2:
+      link = "https://kinopoiskapiunofficial.tech/images/posters/kp/64988.jpg";
+      break;
+    case "Cannes" && 3:
+      //Инструкции, соответствующие значению valueN
+      break;
+    case "Cannes" && 4:
+      //Инструкции, соответствующие значению valueN
+      break;
+    case "Cannes" && 5:
+      //Инструкции, соответствующие значению valueN
+      break;
+    case "Cannes" && 6:
+      //Инструкции, соответствующие значению valueN
+      break;
+    case "Cannes" && 7:
+      link = "https://kinopoiskapiunofficial.tech/images/posters/kp/893916.jpg";
+      break;
+    default:
+      link = "https://kinopoiskapiunofficial.tech/images/posters/kp/7730.jpg";
+      break;
+  }
+
+  return {
+    data: {
+      data: {
+        posterUrl: link,
+      },
+    },
+  };
+};
