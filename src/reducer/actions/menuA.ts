@@ -1,8 +1,8 @@
 import { Dispatch } from "redux";
 import axios from "axios";
 import shuffle from "lodash.shuffle";
-import chunk from "lodash.chunk";
-import round from "lodash.round";
+// import chunk from "lodash.chunk";
+// import round from "lodash.round";
 
 import { DefaultActionTypes, DefaultAction } from "../../types/data";
 import { arrayLink, date, rej } from "../arrayLink";
@@ -25,10 +25,10 @@ export const fetchMenu = (choiceFest: string) => {
     try {
       dispatch({ type: DefaultActionTypes.FETCH_DEFAULT });
 
-      const arr = chunk(
-        choice(choiceFest),
-        round(choice(choiceFest).length / 2)
-      );
+      // const arr = chunk(
+      //   choice(choiceFest),
+      //   round(choice(choiceFest).length / 2)
+      // );
 
       const resArray = choice(choiceFest).map((item: number, index: number) => {
         const res = axios

@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+
 import {
   Modal,
   Wrapper,
@@ -54,6 +55,7 @@ const FilmModal: FC<IProps> = ({
         className="far fa-times-circle fa-4x"
         onClick={() => setModalFrame(null)}
       ></i>
+
       <Wrapper onClick={(e) => e.stopPropagation()}>
         <WrapperSlider {...settings}>
           {arraySlider.map((item: FrameItemTypes, index: number) => {
