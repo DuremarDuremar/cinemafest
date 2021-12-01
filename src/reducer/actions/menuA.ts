@@ -43,14 +43,14 @@ export const fetchMenu = (choiceFest: string) => {
             return res;
           })
           .catch((error) => {
-            console.log(choiceFest, index);
+            // console.log(choiceFest, index);
             return rej(choiceFest, index);
           });
 
         return res;
       });
 
-      console.log(choiceFest);
+      // console.log(choiceFest);
 
       dispatch({
         type: DefaultActionTypes.FETCH_DEFAULT_SUCCESS,

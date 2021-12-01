@@ -17,6 +17,14 @@ export const Content = styled.div`
 export const Item = styled.div`
   margin: 0px auto;
   background-color: #2f3542;
+
+  @media ${respon.mdMin} {
+    &:hover {
+      background-color: rgb(47, 53, 66, 0.4);
+    }
+    transition: all 0.5s ease-out;
+  }
+
   @media ${respon.mdMax} {
     background-color: black;
   }

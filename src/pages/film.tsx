@@ -1,5 +1,6 @@
 import React, { FC, useState, useCallback, useMemo, useEffect } from "react";
 import { useParams } from "react-router";
+import { useErrorBoundary } from "use-error-boundary";
 import axios from "axios";
 import { setTimeout } from "timers";
 
@@ -19,6 +20,7 @@ const Film: FC = () => {
   let arrayFilm = useMemo(() => Object.values(arrayLink).flat(1), []);
 
   const { respons730 } = useTypeSelector((state) => state.respons);
+  const { ErrorBoundary } = useErrorBoundary();
 
   const renderId = useCallback(
     (id: string) => {
@@ -98,29 +100,56 @@ const Film: FC = () => {
       <Main>
         {film ? (
           respons730 ? (
-            <FestPoster newFilm={newFilm} film={film} />
+            <ErrorBoundary
+              render={() => <FestPoster newFilm={newFilm} film={film} />}
+              renderError={({ error }) => (
+                <p>An error has been caught: {error.message}</p>
+              )}
+            />
           ) : null
         ) : (
           <Spinner />
         )}
-        <FilmInfo
-          film={film}
-          director={director}
-          respons730={respons730}
-          newFilm={newFilm}
+        <ErrorBoundary
+          render={() => (
+            <FilmInfo
+              film={film}
+              director={director}
+              respons730={respons730}
+              newFilm={newFilm}
+            />
+          )}
+          renderError={({ error }) => (
+            <p>An error has been caught: {error.message}</p>
+          )}
         />
+
         {frame ? (
-          <FilmFrames frame={frame} setModalFrame={setModalFrame} />
+          <ErrorBoundary
+            render={() => (
+              <FilmFrames frame={frame} setModalFrame={setModalFrame} />
+            )}
+            renderError={({ error }) => (
+              <p>An error has been caught: {error.message}</p>
+            )}
+          />
         ) : (
           <Spinner />
         )}
       </Main>
       {frame && modalFrame && (
-        <FilmModal
-          modalFrame={modalFrame}
-          setModalFrame={setModalFrame}
-          frame={frame}
-          respons730={respons730}
+        <ErrorBoundary
+          render={() => (
+            <FilmModal
+              modalFrame={modalFrame}
+              setModalFrame={setModalFrame}
+              frame={frame}
+              respons730={respons730}
+            />
+          )}
+          renderError={({ error }) => (
+            <p>An error has been caught: {error.message}</p>
+          )}
         />
       )}
     </Content>
