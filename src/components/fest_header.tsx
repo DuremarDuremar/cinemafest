@@ -9,7 +9,7 @@ interface IProps {
   setChoiceFest: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const FestHeader: FC<IProps> = ({ choiceFest, setChoiceFest }) => {
+const FestHeader: FC<IProps> = ({ choiceFest = "Cannes", setChoiceFest }) => {
   const { respons950, respons730 } = useTypeSelector((state) => state.respons);
   const btns = ["Cannes", "Venice", "Berlin", "Sundance"];
 

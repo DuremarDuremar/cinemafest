@@ -45,9 +45,9 @@ const FestFilms: FC<IProps> = ({ linkFest, choiceFest }) => {
           <Item
             key={index}
             ref={index + 1 === data.length ? ref : null}
-            id={item.filmId}
+            id={item.kinopoiskId}
           >
-            {item.filmId ? (
+            {item.kinopoiskId ? (
               <>
                 <Info fs={respons730 ? "4px" : "8px"}>
                   <div>
@@ -56,8 +56,8 @@ const FestFilms: FC<IProps> = ({ linkFest, choiceFest }) => {
                   </div>
                   <p>{item.year}</p>
                 </Info>
-                <Image to={`/${item.filmId}`}>
-                  <img src={item.posterUrlPreview} alt={item.filmId} />
+                <Image to={`/${item.kinopoiskId}`}>
+                  <img src={item.posterUrlPreview} alt={item.kinopoiskId} />
                 </Image>
               </>
             ) : (

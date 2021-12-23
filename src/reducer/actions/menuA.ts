@@ -1,8 +1,6 @@
 import { Dispatch } from "redux";
 import axios from "axios";
 import shuffle from "lodash.shuffle";
-// import chunk from "lodash.chunk";
-// import round from "lodash.round";
 
 import { DefaultActionTypes, DefaultAction } from "../../types/data";
 import { arrayLink, date, rej } from "../arrayLink";
@@ -20,19 +18,14 @@ const choice = (choiceFest: string) => {
   return foo;
 };
 
-export const fetchMenu = (choiceFest: string) => {
+export const fetchMenu = (choiceFest: string, api: string) => {
   return async (dispatch: Dispatch<DefaultAction>) => {
     try {
       dispatch({ type: DefaultActionTypes.FETCH_DEFAULT });
 
-      // const arr = chunk(
-      //   choice(choiceFest),
-      //   round(choice(choiceFest).length / 2)
-      // );
-
       const resArray = choice(choiceFest).map((item: number, index: number) => {
         const res = axios
-          .get(`https://kinopoiskapiunofficial.tech/api/v2.1/films/${item}`, {
+          .get(`${api}${item}`, {
             method: "GET",
             headers: {
               "X-API-KEY": "3624a818-0f9b-4117-91dd-3f6624d9d171",

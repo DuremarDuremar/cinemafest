@@ -14,7 +14,7 @@ export const fetchFilms = (linkFest: string, number: number) => {
       dispatch({ type: DefaultActionTypes.FETCH_DEFAULT_FILMS });
       const listRes = foo[number].map((item: any) => {
         const res = axios.get(
-          `https://kinopoiskapiunofficial.tech/api/v2.1/films/${item[0]}`,
+          `https://kinopoiskapiunofficial.tech/api/v2.2/films/${item[0]}`,
           {
             method: "GET",
             headers: {
@@ -28,7 +28,7 @@ export const fetchFilms = (linkFest: string, number: number) => {
       dispatch({
         type: DefaultActionTypes.FETCH_DEFAULT_SUCCESS_FILMS,
         payload: await Promise.all(listRes).then(function (values) {
-          return values.map((item: any) => item.data.data);
+          return values.map((item: any) => item.data);
         }),
       });
     } catch (e) {

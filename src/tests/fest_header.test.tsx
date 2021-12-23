@@ -28,3 +28,25 @@ describe("Header", () => {
     expect(component).toMatchSnapshot();
   });
 });
+
+// import { dataMock } from "./dataMock";
+// import { api } from "../components/fest_main";
+
+// jest.mock("../components/fest_main");
+// const userApiMock = api;
+
+// const dispatchMock = jest.fn();
+
+// const initianalState: DefaultState = {
+//   loading: false,
+//   data: [],
+//   error: "",
+// };
+
+// describe("rr", () => {
+//   const thunk = fetchMenu("Cannes", userApiMock);
+// });
+
+// test("", async ()=> {
+
+// })

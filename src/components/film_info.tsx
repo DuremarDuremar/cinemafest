@@ -29,7 +29,7 @@ const FilmInfo: FC<IProps> = ({ film, director, respons730, newFilm }) => {
         <InfoFilm>
           <div>
             <p>{film.nameRu}</p>
-            <p>{film.nameEn}</p>
+            <p>{film.nameOriginal || film.nameEn}</p>
           </div>
 
           <div>

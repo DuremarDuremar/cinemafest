@@ -95,6 +95,8 @@ const Film: FC = () => {
     }, 1000);
   }, [state]);
 
+  console.log(film);
+
   return (
     <Content>
       <Main>
@@ -160,7 +162,7 @@ export default Film;
 
 const getAxiosFilm = async (id: string) => {
   const res = await axios.get(
-    `https://kinopoiskapiunofficial.tech/api/v2.1/films/${id}`,
+    `https://kinopoiskapiunofficial.tech/api/v2.2/films/${id}`,
     {
       method: "GET",
       headers: {
@@ -168,7 +170,7 @@ const getAxiosFilm = async (id: string) => {
       },
     }
   );
-  return res.data.data;
+  return res.data;
 };
 
 const getAxiosFrame = async (id: string) => {

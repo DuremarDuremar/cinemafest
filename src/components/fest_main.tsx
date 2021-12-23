@@ -21,6 +21,8 @@ interface IProps {
   choiceFest: string;
 }
 
+export const api = `https://kinopoiskapiunofficial.tech/api/v2.1/films/`;
+
 const FestMain: FC<IProps> = ({ choiceFest }) => {
   const dispatch = useDispatch();
   const { respons520, respons730, respons950 } = useTypeSelector(
@@ -36,7 +38,7 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
   useEffect(() => {
     if (respons520) {
       setTimeout(() => {
-        dispatch(fetchMenu(choiceFest));
+        dispatch(fetchMenu(choiceFest, api));
       }, 400);
     }
   }, [dispatch, choiceFest, respons520]);

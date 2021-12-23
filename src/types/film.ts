@@ -7,6 +7,7 @@ export interface FilmTypes {
   posterUrlPreview: string;
   nameEn?: string;
   nameRu?: string;
+  nameOriginal?: string;
   countries: [{ country: string }];
   year: number;
 }
