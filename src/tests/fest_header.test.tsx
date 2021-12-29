@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import Header from "../components/fest_header";
 import { Provider } from "react-redux";
 
+import Header from "../components/fest_header";
 import { store } from "../reducer/store";
 
 const renderWithRedux = (component: any, {} = {}) => {

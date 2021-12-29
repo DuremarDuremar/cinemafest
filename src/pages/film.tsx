@@ -95,7 +95,7 @@ const Film: FC = () => {
     }, 1000);
   }, [state]);
 
-  console.log(film);
+  // console.log(film);
 
   return (
     <Content>

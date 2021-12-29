@@ -64,6 +64,8 @@ const FestMain: FC<IProps> = ({ choiceFest }) => {
   }, [choiceFest]);
 
   const renderFilms = (item: number) => {
+    console.log(item);
+
     setTimeout(() => {
       yearFest[item] === choiceYear
         ? setChoiceYear("")
