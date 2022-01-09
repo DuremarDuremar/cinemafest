@@ -19,7 +19,7 @@ describe("Main", () => {
     expect(screen.queryByText("1960s")).toBeNull();
     expect(screen.getByText("2000s")).toBeInTheDocument();
     renderWithRedux(<Main choiceFest={"Cannes"} />);
-    expect(screen.getByText("1960s")).toBeInTheDocument();
+    expect(screen.getByText("1950s")).toBeInTheDocument();
   });
   it("fn", () => {
     renderWithRedux(<Main choiceFest={"Cannes"} />);

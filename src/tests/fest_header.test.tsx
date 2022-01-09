@@ -20,6 +20,7 @@ describe("Header", () => {
     );
 
     expect(screen.getByText("Cinema Festivals")).toBeInTheDocument();
+    expect(screen.queryByRole("list")).toBeInTheDocument();
   });
   it("header snapshot", () => {
     const component = renderWithRedux(
