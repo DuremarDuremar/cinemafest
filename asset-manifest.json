@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/cinemafest/static/css/main.00bfa3ad.chunk.css",
-    "main.js": "/cinemafest/static/js/main.74ec2380.chunk.js",
-    "main.js.map": "/cinemafest/static/js/main.74ec2380.chunk.js.map",
+    "main.js": "/cinemafest/static/js/main.bd8ebe6c.chunk.js",
+    "main.js.map": "/cinemafest/static/js/main.bd8ebe6c.chunk.js.map",
     "runtime-main.js": "/cinemafest/static/js/runtime-main.804ce47b.js",
     "runtime-main.js.map": "/cinemafest/static/js/runtime-main.804ce47b.js.map",
     "static/js/2.935346fc.chunk.js": "/cinemafest/static/js/2.935346fc.chunk.js",
@@ -22,6 +22,6 @@
     "static/js/runtime-main.804ce47b.js",
     "static/js/2.935346fc.chunk.js",
     "static/css/main.00bfa3ad.chunk.css",
-    "static/js/main.74ec2380.chunk.js"
+    "static/js/main.bd8ebe6c.chunk.js"
   ]
 }
