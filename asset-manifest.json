@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/cinemafest/static/css/main.00bfa3ad.chunk.css",
+    "main.js": "/cinemafest/static/js/main.73b7668e.chunk.js",
+    "main.js.map": "/cinemafest/static/js/main.73b7668e.chunk.js.map",
+    "runtime-main.js": "/cinemafest/static/js/runtime-main.804ce47b.js",
+    "runtime-main.js.map": "/cinemafest/static/js/runtime-main.804ce47b.js.map",
+    "static/js/2.935346fc.chunk.js": "/cinemafest/static/js/2.935346fc.chunk.js",
+    "static/js/2.935346fc.chunk.js.map": "/cinemafest/static/js/2.935346fc.chunk.js.map",
+    "index.html": "/cinemafest/index.html",
+    "static/css/main.00bfa3ad.chunk.css.map": "/cinemafest/static/css/main.00bfa3ad.chunk.css.map",
+    "static/js/2.935346fc.chunk.js.LICENSE.txt": "/cinemafest/static/js/2.935346fc.chunk.js.LICENSE.txt",
+    "static/media/Berlin.cc0bcd45.png": "/cinemafest/static/media/Berlin.cc0bcd45.png",
+    "static/media/Cannes.fc2e2e74.png": "/cinemafest/static/media/Cannes.fc2e2e74.png",
+    "static/media/Sundance.b517bf7d.png": "/cinemafest/static/media/Sundance.b517bf7d.png",
+    "static/media/Venice.896cf273.png": "/cinemafest/static/media/Venice.896cf273.png",
+    "static/media/cinemaLogo.5770ffd3.jpg": "/cinemafest/static/media/cinemaLogo.5770ffd3.jpg",
+    "static/media/danse-macabre.064fea67.png": "/cinemafest/static/media/danse-macabre.064fea67.png",
+    "static/media/logo.9cf636e0.png": "/cinemafest/static/media/logo.9cf636e0.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.804ce47b.js",
+    "static/js/2.935346fc.chunk.js",
+    "static/css/main.00bfa3ad.chunk.css",
+    "static/js/main.73b7668e.chunk.js"
+  ]
+}
